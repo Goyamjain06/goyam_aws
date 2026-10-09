@@ -18,7 +18,9 @@ export default function HourCurve({ values, red, clean, who, naaqs }: Props) {
     return segs.map(([a, b], i) => (
       <g key={cls + i}>
         <rect className={cls} x={x(Math.min(a, 23))} y={T} width={Math.max(4, x(Math.min(b, 23.99)) - x(Math.min(a, 23)))} height={H - T - B} />
-        {i === labelSeg && <text className="band-label" x={x(Math.min(a, 23)) + 6} y={T + 14}>{text}</text>}
+        {i === labelSeg && (x(Math.min(a, 23)) > W - 140
+          ? <text className="band-label" x={W - R - 6} y={T + 14} textAnchor="end">{text}</text>
+          : <text className="band-label" x={x(Math.min(a, 23)) + 6} y={T + 14}>{text}</text>)}
       </g>
     ))
   }

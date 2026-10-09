@@ -142,13 +142,13 @@ function gazetteer(d: AQData): Place[] {
     ...d.stations.map(s => ({ name: s.name.split(',')[0].split(' - ')[0].trim(), lat: s.lat, lon: s.lon })),
     ...d.zones.map(z => ({ name: z.name, lat: z.lat, lon: z.lon })),
   ]
-  gaz = p.map(x => ({ ...x, key: phonetic(x.name) })).filter(x => x.key.length > 0)
+  gaz = p.map(x => ({ ...x, key: phonetic(x.name.replace(/\s*\(.*?\)/g, '')) })).filter(x => x.key.length > 0)
   return gaz
 }
 
 export function placesInText(d: AQData, text: string) {
   const gz = gazetteer(d)
-  return findInText(text, gz.map(p => p.key)).map(([, , ki]) => ({ name: gz[ki].name, lat: gz[ki].lat, lon: gz[ki].lon }))
+  return findInText(text, gz.map(p => p.key)).map(([, , ki]) => ({ name: gz[ki].name.replace(/\s*\(.*?\)/g, '').trim() || gz[ki].name, lat: gz[ki].lat, lon: gz[ki].lon }))
 }
 
 // ---------- Hindi helpers

@@ -4,6 +4,7 @@ from __future__ import annotations
 import datetime as dt
 import json
 import math
+import re
 from functools import lru_cache
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -54,6 +55,10 @@ def category(pm25: float) -> dict:
 
 # ----------------------------------------------------------------------------- places
 
+def _clean(name: str) -> str:
+    return re.sub(r"\s*\(.*?\)", "", name).strip() or name
+
+
 def _norm(s: str) -> str:
     return translit.phonetic(s)
 
@@ -68,7 +73,8 @@ def gazetteer() -> list[dict]:
     for z in d["zones"]:
         places.append({"name": z["name"], "lat": z["lat"], "lon": z["lon"], "kind": "zone"})
     for p in places:
-        p["key"] = _norm(p["name"])
+        # "Hauz Khas (Yellow Line)" -> "Hauz Khas" for matching; the display name keeps the line
+        p["key"] = _norm(re.sub(r"\s*\(.*?\)", "", p["name"]))
     return [p for p in places if p["key"]]
 
 
@@ -89,14 +95,14 @@ def find_place(name: str) -> dict | None:
             best, best_score = p, score
     if best is None or best_score < 0.72:
         return None
-    return {"name": best["name"], "lat": best["lat"], "lon": best["lon"], "match": round(best_score, 2)}
+    return {"name": _clean(best["name"]), "lat": best["lat"], "lon": best["lon"], "match": round(best_score, 2)}
 
 
 def places_in_text(text: str) -> list[dict]:
     """Known places mentioned in free Hindi/Hinglish/English text, in order of appearance."""
     gz = gazetteer()
     hits = translit.find_in_text(text, [p["key"] for p in gz])
-    return [{"name": gz[ki]["name"], "lat": gz[ki]["lat"], "lon": gz[ki]["lon"]} for _, _, ki, _ in hits]
+    return [{"name": _clean(gz[ki]["name"]), "lat": gz[ki]["lat"], "lon": gz[ki]["lon"]} for _, _, ki, _ in hits]
 
 
 # ----------------------------------------------------------------------------- air
