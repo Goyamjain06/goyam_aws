@@ -208,37 +208,75 @@ def fetch_history(stations: list[dict], start: dt.date, end: dt.date) -> pd.Data
 
 # ----------------------------------------------------------------------------- 3. break spots
 
+OVERPASS_MIRRORS = (
+    "https://overpass-api.de/api/interpreter",
+    "https://overpass.private.coffee/api/interpreter",
+    "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+    "https://overpass.kumi.systems/api/interpreter",
+)
+
+
 def fetch_metro_stations() -> list[dict]:
     s, w, n, e = BBOX[1], BBOX[0], BBOX[3], BBOX[2]
-    query = f"""[out:json][timeout:90];
+    query = f"""[out:json][timeout:120];
     (
       node["railway"="station"]["station"="subway"]({s},{w},{n},{e});
       node["railway"="station"]["subway"="yes"]({s},{w},{n},{e});
       node["public_transport"="station"]["subway"="yes"]({s},{w},{n},{e});
+      node["railway"="station"]["network"~"Delhi Metro|Rapid Metro|Noida Metro",i]({s},{w},{n},{e});
     );
     out body;"""
-    for url in ("https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"):
-        try:
-            resp = requests.post(url, data={"data": query}, timeout=120,
-                                 headers={"User-Agent": "saans-hackathon/1.0"})
-            resp.raise_for_status()
-            seen, spots = set(), []
-            for el in resp.json().get("elements", []):
-                name = (el.get("tags") or {}).get("name:en") or (el.get("tags") or {}).get("name")
-                if not name:
+    for url in OVERPASS_MIRRORS:
+        for attempt in range(2):
+            try:
+                resp = requests.post(url, data={"data": query}, timeout=180,
+                                     headers={"User-Agent": "saans-hackathon/1.0 (github.com/Goyamjain06/goyam_aws)"})
+                if resp.status_code in (429, 504):
+                    log(f"overpass busy at {url} ({resp.status_code}), retrying...")
+                    time.sleep(10)
                     continue
-                key = name.lower().replace("metro station", "").strip()
-                if key in seen:
-                    continue
-                seen.add(key)
-                spots.append({"name": name, "lat": round(el["lat"], 5), "lon": round(el["lon"], 5),
-                              "type": "metro"})
-            log(f"found {len(spots)} metro stations from OpenStreetMap")
-            return spots
-        except Exception as ex:  # try the mirror
-            log(f"overpass error at {url}: {ex}")
+                resp.raise_for_status()
+                seen, spots = set(), []
+                for el in resp.json().get("elements", []):
+                    tags = el.get("tags") or {}
+                    name = tags.get("name:en") or tags.get("name")
+                    if not name or "lat" not in el:
+                        continue
+                    key = name.lower().replace("metro station", "").replace("metro", "").strip()
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    spots.append({"name": name, "lat": round(el["lat"], 5), "lon": round(el["lon"], 5), "type": "metro"})
+                if spots:
+                    log(f"found {len(spots)} metro stations from OpenStreetMap ({url})")
+                    return spots
+                log(f"overpass returned no stations at {url}")
+                break
+            except Exception as ex:  # try again / next mirror
+                log(f"overpass error at {url}: {ex}")
+                time.sleep(3)
     log("WARNING: could not fetch metro stations; break-spot feature will be empty")
     return []
+
+
+def compute_siting(station_out: list[dict], breaks: list[dict]) -> list[dict]:
+    """Rank metro stations by street-level smoke around them during working hours (9am-9pm)."""
+    work = list(range(9, 21))
+    siting = []
+    for b in breaks:
+        pts = sorted(((haversine_km(b["lat"], b["lon"], s["lat"], s["lon"]), s) for s in station_out),
+                     key=lambda t: t[0])[:3]
+        if not pts or pts[0][0] > 8:
+            continue
+        wsum = sum(1 / max(d, 0.5) ** 2 for d, _ in pts)
+        pm = sum((1 / max(d, 0.5) ** 2) * (sum(s["hourly_median"][x] for x in work) / len(work))
+                 for d, s in pts) / wsum
+        siting.append({"name": b["name"], "lat": b["lat"], "lon": b["lon"],
+                       "work_hours_pm25": r1(pm),
+                       "rider_cigs_per_shift": round(cigs(pm * ONROAD_FACTOR * SHIFT_HOURS), 2),
+                       "zone": pts[0][1]["zone"]})
+    siting.sort(key=lambda x: -x["work_hours_pm25"])
+    return siting[:40]
 
 
 # ----------------------------------------------------------------------------- 4. analysis
@@ -308,21 +346,7 @@ def build(stations, hourly, breaks, start, end) -> dict:
     daily_city = h.groupby("date")["value"].mean()
     station_hours = h["value"]
 
-    # Ashray siting: rank metro stations by on-road exposure around them during working hours (9am-9pm)
-    work = list(range(9, 21))
-    siting = []
-    for b in breaks:
-        pts = sorted(((haversine_km(b["lat"], b["lon"], s["lat"], s["lon"]), s) for s in station_out),
-                     key=lambda t: t[0])[:3]
-        if not pts or pts[0][0] > 8:
-            continue
-        wsum = sum(1 / max(d, 0.5) ** 2 for d, _ in pts)
-        pm = sum((1 / max(d, 0.5) ** 2) * (sum(s["hourly_median"][x] for x in work) / len(work))
-                 for d, s in pts) / wsum
-        siting.append({"name": b["name"], "lat": b["lat"], "lon": b["lon"],
-                       "work_hours_pm25": r1(pm), "rider_cigs_per_shift": round(cigs(pm * ONROAD_FACTOR * SHIFT_HOURS), 2),
-                       "zone": zone_for(b["name"], b["lat"], b["lon"])})
-    siting.sort(key=lambda x: -x["work_hours_pm25"])
+    siting = compute_siting(station_out, breaks)
 
     return {
         "meta": {
@@ -352,18 +376,40 @@ def build(stations, hourly, breaks, start, end) -> dict:
         "zones": zones,
         "stations": station_out,
         "breaks": breaks,
-        "siting": siting[:40],
+        "siting": siting,
     }
+
+
+def write(data: dict) -> None:
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(json.dumps(data, ensure_ascii=False, indent=1))
+    for c in COPIES:
+        c.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy(OUT, c)
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--start", default="2025-10-15")
     ap.add_argument("--end", default="2025-12-15")
+    ap.add_argument("--metro-only", action="store_true",
+                    help="only (re)fetch metro stations and rank rest-point sites in the existing data file")
     args = ap.parse_args()
+    if args.metro_only:
+        data = json.loads(OUT.read_text())
+        breaks = fetch_metro_stations()
+        if not breaks:
+            sys.exit("Still no metro stations. Check your internet and try again in a few minutes.")
+        data["breaks"] = breaks
+        data["siting"] = compute_siting(data["stations"], breaks)
+        write(data)
+        log(f"added {len(breaks)} break spots and {len(data['siting'])} ranked rest-point sites")
+        log("top 5: " + "; ".join(f"{x['name']} ({x['zone']}, {x['rider_cigs_per_shift']} cig/shift)"
+                                  for x in data["siting"][:5]))
+        return
     start, end = dt.date.fromisoformat(args.start), dt.date.fromisoformat(args.end)
 
-    key = os.environ.get("OPENAQ_API_KEY")
+    key = os.environ.get("OPENAQ_API_KEY")  # only needed for a full build
     if not key:
         sys.exit("Set OPENAQ_API_KEY first (free key from https://explore.openaq.org -> account settings).")
 
@@ -372,11 +418,7 @@ def main():
     breaks = fetch_metro_stations()
     data = build(stations, hourly, breaks, start, end)
 
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(data, ensure_ascii=False, indent=1))
-    for c in COPIES:
-        c.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy(OUT, c)
+    write(data)
     hd = data["headline"]
     log(f"wrote {OUT.relative_to(ROOT)} (+ copies for app and backend)")
     log("---- headline findings ----")
