@@ -169,7 +169,7 @@ function SitingMap({ d, live }: { d: AQData; live: Map<number, number> | null })
   const hour = m.istHour()
   return (
     <MapContainer center={[28.62, 77.2]} zoom={10} scrollWheelZoom={false} className="map">
-      <TileLayer attribution='&copy; OpenStreetMap contributors &copy; CARTO' url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
+      <TileLayer attribution="&copy; OpenStreetMap contributors" url="https://tile.openstreetmap.org/{z}/{x}/{y}.png" maxZoom={19} />
       {d.stations.map(s => {
         const pm = live?.get(s.id) ?? s.hourly_median[hour]
         return (
