@@ -4661,6 +4661,1984 @@
    "days": 62
   }
  ],
- "breaks": [],
- "siting": []
+ "breaks": [
+  {
+   "name": "Ramesh Nagar",
+   "lat": 28.65274,
+   "lon": 77.13165,
+   "type": "metro"
+  },
+  {
+   "name": "Patel Nagar",
+   "lat": 28.64501,
+   "lon": 77.16928,
+   "type": "metro"
+  },
+  {
+   "name": "Rithala",
+   "lat": 28.72081,
+   "lon": 77.10718,
+   "type": "metro"
+  },
+  {
+   "name": "Pratap Nagar",
+   "lat": 28.66672,
+   "lon": 77.1989,
+   "type": "metro"
+  },
+  {
+   "name": "Pul Bangash",
+   "lat": 28.66641,
+   "lon": 77.20742,
+   "type": "metro"
+  },
+  {
+   "name": "Kashmere Gate",
+   "lat": 28.66745,
+   "lon": 77.22825,
+   "type": "metro"
+  },
+  {
+   "name": "Kohat Enclave",
+   "lat": 28.69804,
+   "lon": 77.14054,
+   "type": "metro"
+  },
+  {
+   "name": "Karol Bagh",
+   "lat": 28.64401,
+   "lon": 77.18852,
+   "type": "metro"
+  },
+  {
+   "name": "Kirti Nagar (Blue Line)",
+   "lat": 28.65575,
+   "lon": 77.15066,
+   "type": "metro"
+  },
+  {
+   "name": "Shadipur",
+   "lat": 28.65158,
+   "lon": 77.15826,
+   "type": "metro"
+  },
+  {
+   "name": "Moti Nagar",
+   "lat": 28.65786,
+   "lon": 77.14243,
+   "type": "metro"
+  },
+  {
+   "name": "Sikanderpur",
+   "lat": 28.48127,
+   "lon": 77.093,
+   "type": "metro"
+  },
+  {
+   "name": "Delhi Aerocity",
+   "lat": 28.54878,
+   "lon": 77.12079,
+   "type": "metro"
+  },
+  {
+   "name": "Hauz Khas (Yellow Line)",
+   "lat": 28.54426,
+   "lon": 77.20671,
+   "type": "metro"
+  },
+  {
+   "name": "Shivaji Stadium",
+   "lat": 28.6289,
+   "lon": 77.21132,
+   "type": "metro"
+  },
+  {
+   "name": "New Delhi",
+   "lat": 28.64348,
+   "lon": 77.22274,
+   "type": "metro"
+  },
+  {
+   "name": "Tis Hazari",
+   "lat": 28.66716,
+   "lon": 77.21663,
+   "type": "metro"
+  },
+  {
+   "name": "Shastri Park",
+   "lat": 28.66843,
+   "lon": 77.25053,
+   "type": "metro"
+  },
+  {
+   "name": "Seelampur",
+   "lat": 28.66982,
+   "lon": 77.26681,
+   "type": "metro"
+  },
+  {
+   "name": "Welcome (Red Line)",
+   "lat": 28.67179,
+   "lon": 77.27785,
+   "type": "metro"
+  },
+  {
+   "name": "Shahdara",
+   "lat": 28.67343,
+   "lon": 77.28989,
+   "type": "metro"
+  },
+  {
+   "name": "Jhilmil",
+   "lat": 28.67572,
+   "lon": 77.31239,
+   "type": "metro"
+  },
+  {
+   "name": "Shastri Nagar",
+   "lat": 28.67009,
+   "lon": 77.18186,
+   "type": "metro"
+  },
+  {
+   "name": "Inderlok (Red Line)",
+   "lat": 28.67359,
+   "lon": 77.17035,
+   "type": "metro"
+  },
+  {
+   "name": "Kanhaiya Nagar",
+   "lat": 28.68241,
+   "lon": 77.16478,
+   "type": "metro"
+  },
+  {
+   "name": "Keshav Puram",
+   "lat": 28.68893,
+   "lon": 77.16168,
+   "type": "metro"
+  },
+  {
+   "name": "Netaji Subhash Place (Red Line)",
+   "lat": 28.69605,
+   "lon": 77.15249,
+   "type": "metro"
+  },
+  {
+   "name": "Madhuban Chowk",
+   "lat": 28.70327,
+   "lon": 77.13225,
+   "type": "metro"
+  },
+  {
+   "name": "Rohini East",
+   "lat": 28.70758,
+   "lon": 77.126,
+   "type": "metro"
+  },
+  {
+   "name": "GTB Nagar",
+   "lat": 28.69813,
+   "lon": 77.2064,
+   "type": "metro"
+  },
+  {
+   "name": "IGI Airport",
+   "lat": 28.55646,
+   "lon": 77.0867,
+   "type": "metro"
+  },
+  {
+   "name": "Kalkaji Mandir",
+   "lat": 28.54948,
+   "lon": 77.25909,
+   "type": "metro"
+  },
+  {
+   "name": "Dhaula Kuan",
+   "lat": 28.59187,
+   "lon": 77.16172,
+   "type": "metro"
+  },
+  {
+   "name": "New Delhi Airport Express Terminal",
+   "lat": 28.64248,
+   "lon": 77.22311,
+   "type": "metro"
+  },
+  {
+   "name": "Kirti Nagar (Green Line)",
+   "lat": 28.65454,
+   "lon": 77.15136,
+   "type": "metro"
+  },
+  {
+   "name": "Satguru Ramsingh Marg",
+   "lat": 28.66205,
+   "lon": 77.1577,
+   "type": "metro"
+  },
+  {
+   "name": "Rohini West",
+   "lat": 28.71496,
+   "lon": 77.11539,
+   "type": "metro"
+  },
+  {
+   "name": "Belvedere Towers",
+   "lat": 28.4917,
+   "lon": 77.08813,
+   "type": "metro"
+  },
+  {
+   "name": "DLF Phase 2",
+   "lat": 28.48756,
+   "lon": 77.09299,
+   "type": "metro"
+  },
+  {
+   "name": "Sikanderpur RMRG Station",
+   "lat": 28.481,
+   "lon": 77.09444,
+   "type": "metro"
+  },
+  {
+   "name": "Moulsari Avenue Station",
+   "lat": 28.50078,
+   "lon": 77.09463,
+   "type": "metro"
+  },
+  {
+   "name": "Phase 3 Station",
+   "lat": 28.49357,
+   "lon": 77.09366,
+   "type": "metro"
+  },
+  {
+   "name": "Dhansa Bus Stand",
+   "lat": 28.61191,
+   "lon": 76.97853,
+   "type": "metro"
+  },
+  {
+   "name": "Hauz Khas (Magenta Line)",
+   "lat": 28.54337,
+   "lon": 77.20504,
+   "type": "metro"
+  },
+  {
+   "name": "Munirka",
+   "lat": 28.5569,
+   "lon": 77.17506,
+   "type": "metro"
+  },
+  {
+   "name": "Sukhdev Vihar",
+   "lat": 28.55975,
+   "lon": 77.2749,
+   "type": "metro"
+  },
+  {
+   "name": "Vasant Vihar",
+   "lat": 28.55783,
+   "lon": 77.16112,
+   "type": "metro"
+  },
+  {
+   "name": "Shankar Vihar",
+   "lat": 28.56085,
+   "lon": 77.14028,
+   "type": "metro"
+  },
+  {
+   "name": "Sadar Bazar Cantonment",
+   "lat": 28.57711,
+   "lon": 77.11113,
+   "type": "metro"
+  },
+  {
+   "name": "Palam",
+   "lat": 28.58891,
+   "lon": 77.08308,
+   "type": "metro"
+  },
+  {
+   "name": "Dashrath Puri",
+   "lat": 28.60185,
+   "lon": 77.08238,
+   "type": "metro"
+  },
+  {
+   "name": "Janakpuri West",
+   "lat": 28.62895,
+   "lon": 77.07795,
+   "type": "metro"
+  },
+  {
+   "name": "Okhla Bird Sanctuary",
+   "lat": 28.55294,
+   "lon": 77.3216,
+   "type": "metro"
+  },
+  {
+   "name": "Greater Kailash",
+   "lat": 28.54191,
+   "lon": 77.23849,
+   "type": "metro"
+  },
+  {
+   "name": "Kalindi Kunj",
+   "lat": 28.54292,
+   "lon": 77.31011,
+   "type": "metro"
+  },
+  {
+   "name": "Okhla Vihar",
+   "lat": 28.5613,
+   "lon": 77.29188,
+   "type": "metro"
+  },
+  {
+   "name": "Panchsheel Park",
+   "lat": 28.54237,
+   "lon": 77.22109,
+   "type": "metro"
+  },
+  {
+   "name": "R. K. Puram",
+   "lat": 28.55038,
+   "lon": 77.18552,
+   "type": "metro"
+  },
+  {
+   "name": "Jasola Vihar Shaheen Bagh",
+   "lat": 28.54583,
+   "lon": 77.29666,
+   "type": "metro"
+  },
+  {
+   "name": "Botanical Garden (Magenta Line)",
+   "lat": 28.56391,
+   "lon": 77.33384,
+   "type": "metro"
+  },
+  {
+   "name": "Terminal 1 IGI Airport",
+   "lat": 28.56483,
+   "lon": 77.12266,
+   "type": "metro"
+  },
+  {
+   "name": "Trilokpuri Sanjay Lake",
+   "lat": 28.61345,
+   "lon": 77.30885,
+   "type": "metro"
+  },
+  {
+   "name": "Anand Vihar (Blue Line)",
+   "lat": 28.64683,
+   "lon": 77.31587,
+   "type": "metro"
+  },
+  {
+   "name": "Karkarduma (Pink Line)",
+   "lat": 28.64934,
+   "lon": 77.30607,
+   "type": "metro"
+  },
+  {
+   "name": "Samaypur Badli",
+   "lat": 28.74464,
+   "lon": 77.13827,
+   "type": "metro"
+  },
+  {
+   "name": "Rohini Sector 18, 19",
+   "lat": 28.73838,
+   "lon": 77.13985,
+   "type": "metro"
+  },
+  {
+   "name": "Sector 54 Chowk",
+   "lat": 28.43298,
+   "lon": 77.1049,
+   "type": "metro"
+  },
+  {
+   "name": "Sector 53-54",
+   "lat": 28.44638,
+   "lon": 77.10046,
+   "type": "metro"
+  },
+  {
+   "name": "Sector 42-43",
+   "lat": 28.45743,
+   "lon": 77.09695,
+   "type": "metro"
+  },
+  {
+   "name": "Jamia Millia Islamia",
+   "lat": 28.56305,
+   "lon": 77.28634,
+   "type": "metro"
+  },
+  {
+   "name": "Chirag Delhi",
+   "lat": 28.54111,
+   "lon": 77.23032,
+   "type": "metro"
+  },
+  {
+   "name": "DLF Phase 1",
+   "lat": 28.47143,
+   "lon": 77.09396,
+   "type": "metro"
+  },
+  {
+   "name": "Sector 55–56",
+   "lat": 28.42336,
+   "lon": 77.10513,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 143",
+   "lat": 28.49426,
+   "lon": 77.42238,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 148",
+   "lat": 28.44806,
+   "lon": 77.4766,
+   "type": "metro"
+  },
+  {
+   "name": "Alpha 1",
+   "lat": 28.47103,
+   "lon": 77.51274,
+   "type": "metro"
+  },
+  {
+   "name": "Delta 1",
+   "lat": 28.47848,
+   "lon": 77.52573,
+   "type": "metro"
+  },
+  {
+   "name": "GNIDA Office",
+   "lat": 28.48468,
+   "lon": 77.5365,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 147",
+   "lat": 28.45935,
+   "lon": 77.46612,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 144",
+   "lat": 28.48629,
+   "lon": 77.43308,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 83",
+   "lat": 28.52227,
+   "lon": 77.39645,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 137",
+   "lat": 28.51077,
+   "lon": 77.40361,
+   "type": "metro"
+  },
+  {
+   "name": "IP Extension",
+   "lat": 28.6319,
+   "lon": 77.31072,
+   "type": "metro"
+  },
+  {
+   "name": "Karkarduma Court",
+   "lat": 28.6536,
+   "lon": 77.29579,
+   "type": "metro"
+  },
+  {
+   "name": "East Vinod Nagar - Mayur Vihar - II",
+   "lat": 28.62004,
+   "lon": 77.30541,
+   "type": "metro"
+  },
+  {
+   "name": "Mandawali - West Vinod Nagar",
+   "lat": 28.62498,
+   "lon": 77.30445,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 146",
+   "lat": 28.46882,
+   "lon": 77.45521,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 145",
+   "lat": 28.479,
+   "lon": 77.44241,
+   "type": "metro"
+  },
+  {
+   "name": "NSEZ",
+   "lat": 28.5324,
+   "lon": 77.39475,
+   "type": "metro"
+  },
+  {
+   "name": "Depot Station",
+   "lat": 28.48901,
+   "lon": 77.54401,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 101",
+   "lat": 28.55605,
+   "lon": 77.38495,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 51",
+   "lat": 28.58572,
+   "lon": 77.37526,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 76",
+   "lat": 28.56533,
+   "lon": 77.37966,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 81",
+   "lat": 28.5493,
+   "lon": 77.38995,
+   "type": "metro"
+  },
+  {
+   "name": "Hindon River",
+   "lat": 28.67343,
+   "lon": 77.40654,
+   "type": "metro"
+  },
+  {
+   "name": "Deepali Chowk",
+   "lat": 28.6981,
+   "lon": 77.11828,
+   "type": "metro"
+  },
+  {
+   "name": "Haiderpur Village",
+   "lat": 28.7249,
+   "lon": 77.14247,
+   "type": "metro"
+  },
+  {
+   "name": "North Pitampura - Prashant Vihar",
+   "lat": 28.71307,
+   "lon": 77.13873,
+   "type": "metro"
+  },
+  {
+   "name": "Bhalaswa",
+   "lat": 28.73696,
+   "lon": 77.16809,
+   "type": "metro"
+  },
+  {
+   "name": "Burari",
+   "lat": 28.72983,
+   "lon": 77.19957,
+   "type": "metro"
+  },
+  {
+   "name": "Jagatpur - Wazirabad",
+   "lat": 28.72112,
+   "lon": 77.224,
+   "type": "metro"
+  },
+  {
+   "name": "Khajuri Khas",
+   "lat": 28.70526,
+   "lon": 77.2545,
+   "type": "metro"
+  },
+  {
+   "name": "Yamuna Vihar",
+   "lat": 28.70238,
+   "lon": 77.27731,
+   "type": "metro"
+  },
+  {
+   "name": "Bhajanpura",
+   "lat": 28.7036,
+   "lon": 77.26265,
+   "type": "metro"
+  },
+  {
+   "name": "Soorghat",
+   "lat": 28.71022,
+   "lon": 77.22745,
+   "type": "metro"
+  },
+  {
+   "name": "Haiderpur Badli Mor",
+   "lat": 28.72994,
+   "lon": 77.1491,
+   "type": "metro"
+  },
+  {
+   "name": "Central Secretariat",
+   "lat": 28.61588,
+   "lon": 77.21228,
+   "type": "metro"
+  },
+  {
+   "name": "Dwarka Sector 11",
+   "lat": 28.58644,
+   "lon": 77.04944,
+   "type": "metro"
+  },
+  {
+   "name": "Rajendra Place",
+   "lat": 28.6425,
+   "lon": 77.17828,
+   "type": "metro"
+  },
+  {
+   "name": "Nehru Enclave",
+   "lat": 28.54606,
+   "lon": 77.25151,
+   "type": "metro"
+  },
+  {
+   "name": "Shiv Vihar",
+   "lat": 28.72138,
+   "lon": 77.28946,
+   "type": "metro"
+  },
+  {
+   "name": "Johri Enclave",
+   "lat": 28.71288,
+   "lon": 77.29013,
+   "type": "metro"
+  },
+  {
+   "name": "Gokulpuri",
+   "lat": 28.70248,
+   "lon": 77.28613,
+   "type": "metro"
+  },
+  {
+   "name": "Maujpur-Babarpur",
+   "lat": 28.69208,
+   "lon": 77.2797,
+   "type": "metro"
+  },
+  {
+   "name": "Jaffrabad",
+   "lat": 28.68268,
+   "lon": 77.27481,
+   "type": "metro"
+  },
+  {
+   "name": "Welcome (Pink Line)",
+   "lat": 28.6724,
+   "lon": 77.27702,
+   "type": "metro"
+  },
+  {
+   "name": "East Azad Nagar",
+   "lat": 28.66468,
+   "lon": 77.28484,
+   "type": "metro"
+  },
+  {
+   "name": "Krishna Nagar",
+   "lat": 28.65781,
+   "lon": 77.29012,
+   "type": "metro"
+  },
+  {
+   "name": "Saket",
+   "lat": 28.52117,
+   "lon": 77.20222,
+   "type": "metro"
+  },
+  {
+   "name": "Majlis Park",
+   "lat": 28.7244,
+   "lon": 77.18184,
+   "type": "metro"
+  },
+  {
+   "name": "Vinobapuri",
+   "lat": 28.56587,
+   "lon": 77.2493,
+   "type": "metro"
+  },
+  {
+   "name": "Mayur Vihar - I (Pink Line)",
+   "lat": 28.60364,
+   "lon": 77.29093,
+   "type": "metro"
+  },
+  {
+   "name": "Shree Ram Mandir Mayur Vihar",
+   "lat": 28.60586,
+   "lon": 77.2987,
+   "type": "metro"
+  },
+  {
+   "name": "Sarai Kale Khan - Nizamuddin",
+   "lat": 28.58875,
+   "lon": 77.25725,
+   "type": "metro"
+  },
+  {
+   "name": "Ashram",
+   "lat": 28.57242,
+   "lon": 77.2586,
+   "type": "metro"
+  },
+  {
+   "name": "Arthala",
+   "lat": 28.677,
+   "lon": 77.39189,
+   "type": "metro"
+  },
+  {
+   "name": "Shaheed Nagar",
+   "lat": 28.67666,
+   "lon": 77.33392,
+   "type": "metro"
+  },
+  {
+   "name": "Mohan Nagar",
+   "lat": 28.67854,
+   "lon": 77.384,
+   "type": "metro"
+  },
+  {
+   "name": "Shyam Park",
+   "lat": 28.67823,
+   "lon": 77.37065,
+   "type": "metro"
+  },
+  {
+   "name": "Rajendra Nagar",
+   "lat": 28.67761,
+   "lon": 77.35814,
+   "type": "metro"
+  },
+  {
+   "name": "Raj Bagh",
+   "lat": 28.67709,
+   "lon": 77.34683,
+   "type": "metro"
+  },
+  {
+   "name": "Sir M. Vishweshwaraiah Moti Bagh",
+   "lat": 28.57853,
+   "lon": 77.17574,
+   "type": "metro"
+  },
+  {
+   "name": "Bhikaji Cama Place",
+   "lat": 28.57026,
+   "lon": 77.18787,
+   "type": "metro"
+  },
+  {
+   "name": "Dilli Haat - INA (Pink Line)",
+   "lat": 28.57365,
+   "lon": 77.20759,
+   "type": "metro"
+  },
+  {
+   "name": "Lajpat Nagar (Pink Line)",
+   "lat": 28.56958,
+   "lon": 77.23851,
+   "type": "metro"
+  },
+  {
+   "name": "South Extension",
+   "lat": 28.56857,
+   "lon": 77.22057,
+   "type": "metro"
+  },
+  {
+   "name": "Mayapuri",
+   "lat": 28.63718,
+   "lon": 77.12973,
+   "type": "metro"
+  },
+  {
+   "name": "Rajouri Garden (Pink Line)",
+   "lat": 28.65119,
+   "lon": 77.12426,
+   "type": "metro"
+  },
+  {
+   "name": "Rajouri Garden (Blue Line)",
+   "lat": 28.64906,
+   "lon": 77.12272,
+   "type": "metro"
+  },
+  {
+   "name": "Netaji Subhash Place (Pink Line)",
+   "lat": 28.69471,
+   "lon": 77.15426,
+   "type": "metro"
+  },
+  {
+   "name": "Azadpur (Pink Line)",
+   "lat": 28.70578,
+   "lon": 77.18195,
+   "type": "metro"
+  },
+  {
+   "name": "Azadpur (Yellow Line)",
+   "lat": 28.70704,
+   "lon": 77.18037,
+   "type": "metro"
+  },
+  {
+   "name": "Dilli Haat - INA (Yellow Line)",
+   "lat": 28.57418,
+   "lon": 77.2093,
+   "type": "metro"
+  },
+  {
+   "name": "Lajpat Nagar (Violet Line)",
+   "lat": 28.5706,
+   "lon": 77.2364,
+   "type": "metro"
+  },
+  {
+   "name": "Anand Vihar (Pink Line)",
+   "lat": 28.64662,
+   "lon": 77.31553,
+   "type": "metro"
+  },
+  {
+   "name": "Karkarduma (Blue Line)",
+   "lat": 28.64832,
+   "lon": 77.30552,
+   "type": "metro"
+  },
+  {
+   "name": "Delhi Cantt",
+   "lat": 28.60862,
+   "lon": 77.14042,
+   "type": "metro"
+  },
+  {
+   "name": "Shalimar Bagh",
+   "lat": 28.70196,
+   "lon": 77.16543,
+   "type": "metro"
+  },
+  {
+   "name": "Shakurpur",
+   "lat": 28.68577,
+   "lon": 77.14961,
+   "type": "metro"
+  },
+  {
+   "name": "Sarojini Nagar",
+   "lat": 28.57582,
+   "lon": 77.19808,
+   "type": "metro"
+  },
+  {
+   "name": "Punjabi Bagh West",
+   "lat": 28.67277,
+   "lon": 77.1392,
+   "type": "metro"
+  },
+  {
+   "name": "Naraina Vihar",
+   "lat": 28.62439,
+   "lon": 77.13644,
+   "type": "metro"
+  },
+  {
+   "name": "ESI - Basaidarapur",
+   "lat": 28.65807,
+   "lon": 77.12727,
+   "type": "metro"
+  },
+  {
+   "name": "Inderlok (Green Line)",
+   "lat": 28.67271,
+   "lon": 77.16919,
+   "type": "metro"
+  },
+  {
+   "name": "Ashok Park Main",
+   "lat": 28.6716,
+   "lon": 77.15529,
+   "type": "metro"
+  },
+  {
+   "name": "Punjabi Bagh",
+   "lat": 28.673,
+   "lon": 77.14612,
+   "type": "metro"
+  },
+  {
+   "name": "Shivaji Park",
+   "lat": 28.67503,
+   "lon": 77.13047,
+   "type": "metro"
+  },
+  {
+   "name": "Madipur",
+   "lat": 28.67648,
+   "lon": 77.11936,
+   "type": "metro"
+  },
+  {
+   "name": "Paschim Vihar East",
+   "lat": 28.67736,
+   "lon": 77.11228,
+   "type": "metro"
+  },
+  {
+   "name": "Peera Garhi",
+   "lat": 28.67981,
+   "lon": 77.09268,
+   "type": "metro"
+  },
+  {
+   "name": "Udyog Nagar",
+   "lat": 28.6811,
+   "lon": 77.08085,
+   "type": "metro"
+  },
+  {
+   "name": "Surajmal Stadium",
+   "lat": 28.68188,
+   "lon": 77.074,
+   "type": "metro"
+  },
+  {
+   "name": "Nangloi",
+   "lat": 28.6824,
+   "lon": 77.06473,
+   "type": "metro"
+  },
+  {
+   "name": "Nangloi Railway Station",
+   "lat": 28.6822,
+   "lon": 77.05625,
+   "type": "metro"
+  },
+  {
+   "name": "Rajdhani Park",
+   "lat": 28.68231,
+   "lon": 77.04394,
+   "type": "metro"
+  },
+  {
+   "name": "Mundka",
+   "lat": 28.68243,
+   "lon": 77.03057,
+   "type": "metro"
+  },
+  {
+   "name": "Mundka Industrial Area",
+   "lat": 28.68337,
+   "lon": 77.01715,
+   "type": "metro"
+  },
+  {
+   "name": "Ghevra",
+   "lat": 28.68524,
+   "lon": 76.99616,
+   "type": "metro"
+  },
+  {
+   "name": "Tikri Kalan",
+   "lat": 28.68688,
+   "lon": 76.97721,
+   "type": "metro"
+  },
+  {
+   "name": "Tikri Border",
+   "lat": 28.68803,
+   "lon": 76.96408,
+   "type": "metro"
+  },
+  {
+   "name": "Pandit Shree Ram Sharma",
+   "lat": 28.68928,
+   "lon": 76.9512,
+   "type": "metro"
+  },
+  {
+   "name": "Bahadurgarh City",
+   "lat": 28.69078,
+   "lon": 76.93548,
+   "type": "metro"
+  },
+  {
+   "name": "Brigadier Hoshiyar Singh",
+   "lat": 28.69746,
+   "lon": 76.9192,
+   "type": "metro"
+  },
+  {
+   "name": "IIT Delhi",
+   "lat": 28.54701,
+   "lon": 77.19455,
+   "type": "metro"
+  },
+  {
+   "name": "Indraprastha",
+   "lat": 28.6206,
+   "lon": 77.24955,
+   "type": "metro"
+  },
+  {
+   "name": "Yamuna Bank",
+   "lat": 28.62331,
+   "lon": 77.26801,
+   "type": "metro"
+  },
+  {
+   "name": "New Ashok Nagar",
+   "lat": 28.58909,
+   "lon": 77.30151,
+   "type": "metro"
+  },
+  {
+   "name": "Noida City Centre",
+   "lat": 28.57473,
+   "lon": 77.35616,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Golf Course",
+   "lat": 28.56738,
+   "lon": 77.34632,
+   "type": "metro"
+  },
+  {
+   "name": "Botanical Garden (Blue Line)",
+   "lat": 28.56394,
+   "lon": 77.3344,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 18",
+   "lat": 28.57076,
+   "lon": 77.32608,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 16",
+   "lat": 28.57808,
+   "lon": 77.31778,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 15",
+   "lat": 28.58488,
+   "lon": 77.31161,
+   "type": "metro"
+  },
+  {
+   "name": "Mayur Vihar - I (Blue Line)",
+   "lat": 28.60406,
+   "lon": 77.28954,
+   "type": "metro"
+  },
+  {
+   "name": "Dwarka Sector 12",
+   "lat": 28.59224,
+   "lon": 77.04073,
+   "type": "metro"
+  },
+  {
+   "name": "Jhandewalan",
+   "lat": 28.64432,
+   "lon": 77.19992,
+   "type": "metro"
+  },
+  {
+   "name": "Ramakrishna Ashram Marg",
+   "lat": 28.63924,
+   "lon": 77.20858,
+   "type": "metro"
+  },
+  {
+   "name": "Rajiv Chowk",
+   "lat": 28.63271,
+   "lon": 77.21931,
+   "type": "metro"
+  },
+  {
+   "name": "Barakhambha Road",
+   "lat": 28.62977,
+   "lon": 77.225,
+   "type": "metro"
+  },
+  {
+   "name": "Mandi House",
+   "lat": 28.62561,
+   "lon": 77.2342,
+   "type": "metro"
+  },
+  {
+   "name": "Supreme Court",
+   "lat": 28.62348,
+   "lon": 77.24253,
+   "type": "metro"
+  },
+  {
+   "name": "Dwarka Sector 10",
+   "lat": 28.58106,
+   "lon": 77.0575,
+   "type": "metro"
+  },
+  {
+   "name": "Dwarka Sector 9",
+   "lat": 28.57427,
+   "lon": 77.06533,
+   "type": "metro"
+  },
+  {
+   "name": "Dwarka Sector 8",
+   "lat": 28.56561,
+   "lon": 77.06704,
+   "type": "metro"
+  },
+  {
+   "name": "Dwarka Sector 21",
+   "lat": 28.55192,
+   "lon": 77.05856,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 62",
+   "lat": 28.61699,
+   "lon": 77.37359,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 59",
+   "lat": 28.60653,
+   "lon": 77.37268,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 61",
+   "lat": 28.59759,
+   "lon": 77.37227,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 52",
+   "lat": 28.58687,
+   "lon": 77.37302,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 34",
+   "lat": 28.58025,
+   "lon": 77.36349,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Electronic City",
+   "lat": 28.62826,
+   "lon": 77.375,
+   "type": "metro"
+  },
+  {
+   "name": "Uttam Nagar East",
+   "lat": 28.62485,
+   "lon": 77.06529,
+   "type": "metro"
+  },
+  {
+   "name": "Uttam Nagar West",
+   "lat": 28.62176,
+   "lon": 77.05571,
+   "type": "metro"
+  },
+  {
+   "name": "Nawada",
+   "lat": 28.62028,
+   "lon": 77.04508,
+   "type": "metro"
+  },
+  {
+   "name": "Dwarka Mor",
+   "lat": 28.61931,
+   "lon": 77.03328,
+   "type": "metro"
+  },
+  {
+   "name": "Dwarka - Kakrola (Grey Line)",
+   "lat": 28.61589,
+   "lon": 77.02243,
+   "type": "metro"
+  },
+  {
+   "name": "Dwarka - Kakrola (Blue Line)",
+   "lat": 28.61494,
+   "lon": 77.02276,
+   "type": "metro"
+  },
+  {
+   "name": "Dwarka Sector 14",
+   "lat": 28.60222,
+   "lon": 77.02598,
+   "type": "metro"
+  },
+  {
+   "name": "Dwarka Sector 13",
+   "lat": 28.59701,
+   "lon": 77.03354,
+   "type": "metro"
+  },
+  {
+   "name": "Adarsh Nagar",
+   "lat": 28.71658,
+   "lon": 77.17042,
+   "type": "metro"
+  },
+  {
+   "name": "Jahangirpuri",
+   "lat": 28.72597,
+   "lon": 77.16266,
+   "type": "metro"
+  },
+  {
+   "name": "Janakpuri East",
+   "lat": 28.63302,
+   "lon": 77.08676,
+   "type": "metro"
+  },
+  {
+   "name": "Tilak Nagar",
+   "lat": 28.63655,
+   "lon": 77.0965,
+   "type": "metro"
+  },
+  {
+   "name": "Subhash Nagar",
+   "lat": 28.64046,
+   "lon": 77.10518,
+   "type": "metro"
+  },
+  {
+   "name": "Tagore Garden",
+   "lat": 28.64373,
+   "lon": 77.11282,
+   "type": "metro"
+  },
+  {
+   "name": "Guru Dronacharya",
+   "lat": 28.48202,
+   "lon": 77.10227,
+   "type": "metro"
+  },
+  {
+   "name": "Model Town",
+   "lat": 28.70271,
+   "lon": 77.19399,
+   "type": "metro"
+  },
+  {
+   "name": "M G Road",
+   "lat": 28.47955,
+   "lon": 77.07989,
+   "type": "metro"
+  },
+  {
+   "name": "IFFCO Chowk",
+   "lat": 28.47233,
+   "lon": 77.07242,
+   "type": "metro"
+  },
+  {
+   "name": "A.I.I.M.S.",
+   "lat": 28.56686,
+   "lon": 77.20781,
+   "type": "metro"
+  },
+  {
+   "name": "Green Park",
+   "lat": 28.55801,
+   "lon": 77.20679,
+   "type": "metro"
+  },
+  {
+   "name": "Civil Lines",
+   "lat": 28.67685,
+   "lon": 77.22503,
+   "type": "metro"
+  },
+  {
+   "name": "Vidhan Sabha",
+   "lat": 28.68632,
+   "lon": 77.22173,
+   "type": "metro"
+  },
+  {
+   "name": "Vishwa Vidyalaya",
+   "lat": 28.69508,
+   "lon": 77.21475,
+   "type": "metro"
+  },
+  {
+   "name": "Millennium City Centre Gurugram",
+   "lat": 28.45934,
+   "lon": 77.07266,
+   "type": "metro"
+  },
+  {
+   "name": "Malviya Nagar",
+   "lat": 28.52907,
+   "lon": 77.20482,
+   "type": "metro"
+  },
+  {
+   "name": "Chhatarpur",
+   "lat": 28.50672,
+   "lon": 77.175,
+   "type": "metro"
+  },
+  {
+   "name": "Sultanpur",
+   "lat": 28.49912,
+   "lon": 77.16137,
+   "type": "metro"
+  },
+  {
+   "name": "Chandni Chowk",
+   "lat": 28.65842,
+   "lon": 77.23034,
+   "type": "metro"
+  },
+  {
+   "name": "Chawri Bazaar",
+   "lat": 28.64926,
+   "lon": 77.22652,
+   "type": "metro"
+  },
+  {
+   "name": "Patel Chowk",
+   "lat": 28.62297,
+   "lon": 77.21403,
+   "type": "metro"
+  },
+  {
+   "name": "Seva Teerth",
+   "lat": 28.60951,
+   "lon": 77.2118,
+   "type": "metro"
+  },
+  {
+   "name": "Lok Kalyan Marg",
+   "lat": 28.59735,
+   "lon": 77.2111,
+   "type": "metro"
+  },
+  {
+   "name": "Jor Bagh",
+   "lat": 28.58651,
+   "lon": 77.21253,
+   "type": "metro"
+  },
+  {
+   "name": "Qutab Minar",
+   "lat": 28.51295,
+   "lon": 77.18645,
+   "type": "metro"
+  },
+  {
+   "name": "Ghitorni",
+   "lat": 28.49375,
+   "lon": 77.14919,
+   "type": "metro"
+  },
+  {
+   "name": "Arjan Garh",
+   "lat": 28.48074,
+   "lon": 77.12576,
+   "type": "metro"
+  },
+  {
+   "name": "Nangli",
+   "lat": 28.6173,
+   "lon": 77.01044,
+   "type": "metro"
+  },
+  {
+   "name": "Nehru Place",
+   "lat": 28.55142,
+   "lon": 77.25174,
+   "type": "metro"
+  },
+  {
+   "name": "Kailash Colony",
+   "lat": 28.55533,
+   "lon": 77.24196,
+   "type": "metro"
+  },
+  {
+   "name": "Lal Quila",
+   "lat": 28.65748,
+   "lon": 77.23666,
+   "type": "metro"
+  },
+  {
+   "name": "Khan Market",
+   "lat": 28.60224,
+   "lon": 77.22913,
+   "type": "metro"
+  },
+  {
+   "name": "Delhi Gate",
+   "lat": 28.63922,
+   "lon": 77.24078,
+   "type": "metro"
+  },
+  {
+   "name": "Paschim Vihar West",
+   "lat": 28.6786,
+   "lon": 77.10222,
+   "type": "metro"
+  },
+  {
+   "name": "Shaheed Sthal",
+   "lat": 28.67064,
+   "lon": 77.41547,
+   "type": "metro"
+  },
+  {
+   "name": "Najafgarh",
+   "lat": 28.61245,
+   "lon": 76.98651,
+   "type": "metro"
+  },
+  {
+   "name": "Laxmi Nagar",
+   "lat": 28.6306,
+   "lon": 77.27752,
+   "type": "metro"
+  },
+  {
+   "name": "Preet Vihar",
+   "lat": 28.64142,
+   "lon": 77.29528,
+   "type": "metro"
+  },
+  {
+   "name": "Badhkal Mor",
+   "lat": 28.42271,
+   "lon": 77.31035,
+   "type": "metro"
+  },
+  {
+   "name": "Moolchand",
+   "lat": 28.5644,
+   "lon": 77.23426,
+   "type": "metro"
+  },
+  {
+   "name": "Jangpura",
+   "lat": 28.58304,
+   "lon": 77.23932,
+   "type": "metro"
+  },
+  {
+   "name": "Jawaharlal Nehru Stadium",
+   "lat": 28.58823,
+   "lon": 77.23378,
+   "type": "metro"
+  },
+  {
+   "name": "Janpath",
+   "lat": 28.62405,
+   "lon": 77.21926,
+   "type": "metro"
+  },
+  {
+   "name": "ITO",
+   "lat": 28.62819,
+   "lon": 77.24104,
+   "type": "metro"
+  },
+  {
+   "name": "Govind Puri",
+   "lat": 28.54455,
+   "lon": 77.26428,
+   "type": "metro"
+  },
+  {
+   "name": "Harkesh Nagar Okhla",
+   "lat": 28.54293,
+   "lon": 77.27504,
+   "type": "metro"
+  },
+  {
+   "name": "Dabri Mor - Janakpuri South",
+   "lat": 28.61572,
+   "lon": 77.08519,
+   "type": "metro"
+  },
+  {
+   "name": "Rainbow Metro Station",
+   "lat": 28.57436,
+   "lon": 77.37823,
+   "type": "metro"
+  },
+  {
+   "name": "Nirman Vihar",
+   "lat": 28.63646,
+   "lon": 77.28681,
+   "type": "metro"
+  },
+  {
+   "name": "Vaishali",
+   "lat": 28.64967,
+   "lon": 77.33957,
+   "type": "metro"
+  },
+  {
+   "name": "Kaushambi",
+   "lat": 28.64529,
+   "lon": 77.32434,
+   "type": "metro"
+  },
+  {
+   "name": "Murad Nagar",
+   "lat": 28.77038,
+   "lon": 77.5107,
+   "type": "metro"
+  },
+  {
+   "name": "Mansarovar Park",
+   "lat": 28.67538,
+   "lon": 77.30087,
+   "type": "metro"
+  },
+  {
+   "name": "Yashobhoomi Dwarka Sector 25",
+   "lat": 28.55083,
+   "lon": 77.04531,
+   "type": "metro"
+  },
+  {
+   "name": "Duhai Depot Station",
+   "lat": 28.74228,
+   "lon": 77.46764,
+   "type": "metro"
+  },
+  {
+   "name": "Duhai",
+   "lat": 28.72702,
+   "lon": 77.47141,
+   "type": "metro"
+  },
+  {
+   "name": "Ghaziabad",
+   "lat": 28.67255,
+   "lon": 77.41373,
+   "type": "metro"
+  },
+  {
+   "name": "Guldhar",
+   "lat": 28.69954,
+   "lon": 77.44575,
+   "type": "metro"
+  },
+  {
+   "name": "Krishna Park Extension",
+   "lat": 28.64779,
+   "lon": 77.08434,
+   "type": "metro"
+  },
+  {
+   "name": "Cyber City",
+   "lat": 28.49807,
+   "lon": 77.08926,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 70",
+   "lat": 28.60073,
+   "lon": 77.38324,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Sector 44",
+   "lat": 28.55128,
+   "lon": 77.33525,
+   "type": "metro"
+  },
+  {
+   "name": "Noida Office",
+   "lat": 28.54538,
+   "lon": 77.33771,
+   "type": "metro"
+  },
+  {
+   "name": "Nanaksar - Sonia Vihar",
+   "lat": 28.70872,
+   "lon": 77.24251,
+   "type": "metro"
+  },
+  {
+   "name": "Jharoda Majra",
+   "lat": 28.72496,
+   "lon": 77.21371,
+   "type": "metro"
+  },
+  {
+   "name": "Mohan Estate",
+   "lat": 28.51958,
+   "lon": 77.2946,
+   "type": "metro"
+  }
+ ],
+ "siting": [
+  {
+   "name": "Vinobapuri",
+   "lat": 28.56587,
+   "lon": 77.2493,
+   "work_hours_pm25": 185.7,
+   "rider_cigs_per_shift": 4.57,
+   "zone": "Central Delhi"
+  },
+  {
+   "name": "Bhalaswa",
+   "lat": 28.73696,
+   "lon": 77.16809,
+   "work_hours_pm25": 185.2,
+   "rider_cigs_per_shift": 4.56,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "Jahangirpuri",
+   "lat": 28.72597,
+   "lon": 77.16266,
+   "work_hours_pm25": 183.4,
+   "rider_cigs_per_shift": 4.52,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "Haiderpur Badli Mor",
+   "lat": 28.72994,
+   "lon": 77.1491,
+   "work_hours_pm25": 181.1,
+   "rider_cigs_per_shift": 4.46,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "Ashram",
+   "lat": 28.57242,
+   "lon": 77.2586,
+   "work_hours_pm25": 180.2,
+   "rider_cigs_per_shift": 4.44,
+   "zone": "Central Delhi"
+  },
+  {
+   "name": "Adarsh Nagar",
+   "lat": 28.71658,
+   "lon": 77.17042,
+   "work_hours_pm25": 180.2,
+   "rider_cigs_per_shift": 4.44,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "Shalimar Bagh",
+   "lat": 28.70196,
+   "lon": 77.16543,
+   "work_hours_pm25": 179.1,
+   "rider_cigs_per_shift": 4.41,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "Haiderpur Village",
+   "lat": 28.7249,
+   "lon": 77.14247,
+   "work_hours_pm25": 178.6,
+   "rider_cigs_per_shift": 4.4,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "North Pitampura - Prashant Vihar",
+   "lat": 28.71307,
+   "lon": 77.13873,
+   "work_hours_pm25": 178.4,
+   "rider_cigs_per_shift": 4.39,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "Majlis Park",
+   "lat": 28.7244,
+   "lon": 77.18184,
+   "work_hours_pm25": 176.9,
+   "rider_cigs_per_shift": 4.35,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "Netaji Subhash Place (Pink Line)",
+   "lat": 28.69471,
+   "lon": 77.15426,
+   "work_hours_pm25": 176.8,
+   "rider_cigs_per_shift": 4.35,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "Netaji Subhash Place (Red Line)",
+   "lat": 28.69605,
+   "lon": 77.15249,
+   "work_hours_pm25": 176.6,
+   "rider_cigs_per_shift": 4.35,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "Keshav Puram",
+   "lat": 28.68893,
+   "lon": 77.16168,
+   "work_hours_pm25": 176.1,
+   "rider_cigs_per_shift": 4.34,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "Kailash Colony",
+   "lat": 28.55533,
+   "lon": 77.24196,
+   "work_hours_pm25": 174.4,
+   "rider_cigs_per_shift": 4.29,
+   "zone": "Central Delhi"
+  },
+  {
+   "name": "Kohat Enclave",
+   "lat": 28.69804,
+   "lon": 77.14054,
+   "work_hours_pm25": 173.5,
+   "rider_cigs_per_shift": 4.27,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "Madhuban Chowk",
+   "lat": 28.70327,
+   "lon": 77.13225,
+   "work_hours_pm25": 173.4,
+   "rider_cigs_per_shift": 4.27,
+   "zone": "West Delhi"
+  },
+  {
+   "name": "Rohini East",
+   "lat": 28.70758,
+   "lon": 77.126,
+   "work_hours_pm25": 173.2,
+   "rider_cigs_per_shift": 4.26,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "Azadpur (Yellow Line)",
+   "lat": 28.70704,
+   "lon": 77.18037,
+   "work_hours_pm25": 171.9,
+   "rider_cigs_per_shift": 4.23,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "Anand Vihar (Blue Line)",
+   "lat": 28.64683,
+   "lon": 77.31587,
+   "work_hours_pm25": 171.7,
+   "rider_cigs_per_shift": 4.23,
+   "zone": "East Delhi"
+  },
+  {
+   "name": "Anand Vihar (Pink Line)",
+   "lat": 28.64662,
+   "lon": 77.31553,
+   "work_hours_pm25": 171.7,
+   "rider_cigs_per_shift": 4.23,
+   "zone": "East Delhi"
+  },
+  {
+   "name": "Azadpur (Pink Line)",
+   "lat": 28.70578,
+   "lon": 77.18195,
+   "work_hours_pm25": 171.4,
+   "rider_cigs_per_shift": 4.22,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "Karkarduma (Pink Line)",
+   "lat": 28.64934,
+   "lon": 77.30607,
+   "work_hours_pm25": 171.1,
+   "rider_cigs_per_shift": 4.21,
+   "zone": "East Delhi"
+  },
+  {
+   "name": "Karkarduma (Blue Line)",
+   "lat": 28.64832,
+   "lon": 77.30552,
+   "work_hours_pm25": 171.0,
+   "rider_cigs_per_shift": 4.21,
+   "zone": "East Delhi"
+  },
+  {
+   "name": "Kaushambi",
+   "lat": 28.64529,
+   "lon": 77.32434,
+   "work_hours_pm25": 169.6,
+   "rider_cigs_per_shift": 4.18,
+   "zone": "East Delhi"
+  },
+  {
+   "name": "Model Town",
+   "lat": 28.70271,
+   "lon": 77.19399,
+   "work_hours_pm25": 169.5,
+   "rider_cigs_per_shift": 4.17,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "Noida Office",
+   "lat": 28.54538,
+   "lon": 77.33771,
+   "work_hours_pm25": 169.2,
+   "rider_cigs_per_shift": 4.17,
+   "zone": "Noida"
+  },
+  {
+   "name": "Okhla Bird Sanctuary",
+   "lat": 28.55294,
+   "lon": 77.3216,
+   "work_hours_pm25": 169.1,
+   "rider_cigs_per_shift": 4.16,
+   "zone": "Noida"
+  },
+  {
+   "name": "Kanhaiya Nagar",
+   "lat": 28.68241,
+   "lon": 77.16478,
+   "work_hours_pm25": 169.0,
+   "rider_cigs_per_shift": 4.16,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "GTB Nagar",
+   "lat": 28.69813,
+   "lon": 77.2064,
+   "work_hours_pm25": 168.6,
+   "rider_cigs_per_shift": 4.15,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "Deepali Chowk",
+   "lat": 28.6981,
+   "lon": 77.11828,
+   "work_hours_pm25": 168.3,
+   "rider_cigs_per_shift": 4.14,
+   "zone": "West Delhi"
+  },
+  {
+   "name": "Shakurpur",
+   "lat": 28.68577,
+   "lon": 77.14961,
+   "work_hours_pm25": 168.3,
+   "rider_cigs_per_shift": 4.14,
+   "zone": "North Delhi"
+  },
+  {
+   "name": "Noida Sector 44",
+   "lat": 28.55128,
+   "lon": 77.33525,
+   "work_hours_pm25": 168.0,
+   "rider_cigs_per_shift": 4.14,
+   "zone": "Noida"
+  },
+  {
+   "name": "IP Extension",
+   "lat": 28.6319,
+   "lon": 77.31072,
+   "work_hours_pm25": 167.9,
+   "rider_cigs_per_shift": 4.13,
+   "zone": "East Delhi"
+  },
+  {
+   "name": "Moolchand",
+   "lat": 28.5644,
+   "lon": 77.23426,
+   "work_hours_pm25": 167.1,
+   "rider_cigs_per_shift": 4.11,
+   "zone": "Central Delhi"
+  },
+  {
+   "name": "Bhikaji Cama Place",
+   "lat": 28.57026,
+   "lon": 77.18787,
+   "work_hours_pm25": 166.7,
+   "rider_cigs_per_shift": 4.11,
+   "zone": "Central Delhi"
+  },
+  {
+   "name": "Kalindi Kunj",
+   "lat": 28.54292,
+   "lon": 77.31011,
+   "work_hours_pm25": 166.4,
+   "rider_cigs_per_shift": 4.1,
+   "zone": "Noida"
+  },
+  {
+   "name": "Preet Vihar",
+   "lat": 28.64142,
+   "lon": 77.29528,
+   "work_hours_pm25": 166.2,
+   "rider_cigs_per_shift": 4.09,
+   "zone": "East Delhi"
+  },
+  {
+   "name": "Greater Kailash",
+   "lat": 28.54191,
+   "lon": 77.23849,
+   "work_hours_pm25": 165.9,
+   "rider_cigs_per_shift": 4.08,
+   "zone": "South Delhi"
+  },
+  {
+   "name": "Shivaji Park",
+   "lat": 28.67503,
+   "lon": 77.13047,
+   "work_hours_pm25": 165.7,
+   "rider_cigs_per_shift": 4.08,
+   "zone": "West Delhi"
+  },
+  {
+   "name": "Nehru Place",
+   "lat": 28.55142,
+   "lon": 77.25174,
+   "work_hours_pm25": 165.6,
+   "rider_cigs_per_shift": 4.08,
+   "zone": "Central Delhi"
+  }
+ ]
 }
