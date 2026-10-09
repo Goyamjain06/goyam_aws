@@ -160,3 +160,6 @@ export function hourHi(h: number) {
 }
 export const cigHi = (c: number) => (c < 0.1 ? 'एक सिगरेट के दसवें हिस्से से भी कम' : `लगभग ${Math.round(c * 10) / 10} सिगरेट`)
 export const hourEn = (h: number) => { const h12 = h % 12 || 12; return `${h12}${h < 12 ? 'am' : 'pm'}` }
+export const hourLabel = (h: number, lang: 'hi' | 'en') => (lang === 'en' ? hourEn(((h % 24) + 24) % 24) : hourHi(h))
+export const cigLabel = (c: number, lang: 'hi' | 'en') =>
+  lang === 'en' ? (c < 0.1 ? 'less than a tenth of a cigarette' : `about ${Math.round(c * 10) / 10} cigarettes`) : cigHi(c)

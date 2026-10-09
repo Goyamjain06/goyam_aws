@@ -79,7 +79,7 @@ def test_handler_falls_back_when_bedrock_unavailable(monkeypatch):
         raise RuntimeError("no bedrock")
 
     monkeypatch.setattr(agent, "answer", boom)
-    monkeypatch.setattr(handler.aws, "speak", lambda t: None)
+    monkeypatch.setattr(handler.aws, "speak", lambda *a, **k: None)
     ev = {"requestContext": {"http": {"method": "POST"}}, "rawPath": "/ask",
           "body": json.dumps({"text": "paas mein saaf hawa kahan hai", "lat": DTU[0], "lon": DTU[1]})}
     r = handler.lambda_handler(ev, None)
@@ -97,3 +97,17 @@ def test_agent_tools_produce_cards():
     assert "error" in tools["air_now"](place="nowhere-xyz")
     tools["my_shift_dose"]()
     assert "shift" in ctx["cards"]
+
+
+@pytest.mark.parametrize("text,card", [
+    ("I am going from East Delhi to Gurugram", "trip"),
+    ("how much smoke today", "shift"),
+    ("when should I leave", "timing"),
+    ("where is clean air nearby", "breaks"),
+])
+def test_fallback_english(text, card):
+    ctx = {"lat": DTU[0], "lon": DTU[1], "shift_start": 9, "rider_id": "t", "cards": {}, "lang": "en"}
+    out = fallback.answer(text, ctx)
+    assert card in out["cards"], out
+    assert out["lang"] == "en" and "PM2.5" in out["reply"]
+    assert not any("\u0900" <= ch <= "\u097f" for ch in out["reply"].replace(out["cards"].get("trip", {}).get("from", ""), ""))

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Cigarettes from '../components/Cigarettes'
-import { ask, liveAir, speak, type Air, type Answer } from '../lib/api'
+import { ask, liveAir, speak, type Air, type Answer, type Lang } from '../lib/api'
 import { useData } from '../lib/data'
 import * as m from '../lib/model'
 
@@ -12,8 +12,39 @@ const store = {
   set: (k: string, v: string) => { try { localStorage.setItem(k, v) } catch { /* private mode */ } },
 }
 
+const UI = {
+  hi: {
+    brand: 'साँस', switchTo: 'English', switchLabel: 'Switch to English',
+    live: (s: string) => `लाइव, ${s}`, typical: 'इस समय का आम स्तर',
+    soFar: 'आज की शिफ़्ट में अब तक', unit: 'सिगरेट जितना धुआँ', shiftStarted: 'शिफ़्ट शुरू हुई', shiftLabel: 'शिफ़्ट शुरू होने का समय',
+    demoPlace: ', जगह: DTU (डेमो)', thinking: 'सोच रहा हूँ…', replay: 'फिर से सुनें',
+    hint: 'माइक दबाकर हिंदी में पूछें, जैसे “आनंद विहार से नोएडा जा रहा हूँ”।',
+    going: (a: string, b: string) => `${a} से ${b} जा रहा हूँ`,
+    chips: ['पास में साफ़ हवा कहाँ है?', 'आज कितना धुआँ लिया?', 'कब निकलूँ?'],
+    micOn: 'सुनना बंद करें', micOff: 'बोलकर पूछें', listening: 'सुन रहा हूँ…', typeHere: 'या यहाँ लिखें', question: 'सवाल', ask: 'पूछें',
+    engineAI: 'Amazon Nova (Strands agent) से जवाब', engineLocal: 'फ़ोन पर बना जवाब (ऑफ़लाइन)', engineRules: 'नियमों से बना जवाब', secs: 'सेकंड',
+    noMic: 'इस ब्राउज़र में आवाज़ से पूछना नहीं चलता। नीचे लिखकर पूछें।',
+    from: 'से', cig: 'सिगरेट', min: 'मिनट', road: 'सड़क पर PM2.5', next6: 'अगले 6 घंटे', breakTitle: 'साफ़ हवा में आराम', now: 'अभी', timeline: 'अगले घंटों में धुआँ',
+  },
+  en: {
+    brand: 'Saans', switchTo: 'हिंदी', switchLabel: 'हिंदी में बदलें',
+    live: (s: string) => `Live, ${s}`, typical: 'Typical for this hour',
+    soFar: "So far in today's shift", unit: 'cigarettes of smoke', shiftStarted: 'Shift started at', shiftLabel: 'Shift start time',
+    demoPlace: ', place: DTU (demo)', thinking: 'Thinking…', replay: 'Play again',
+    hint: 'Tap the mic and ask, for example “I am going from Anand Vihar to Noida”.',
+    going: (a: string, b: string) => `Going from ${a} to ${b}`,
+    chips: ['Where is clean air nearby?', 'How much smoke today?', 'When should I leave?'],
+    micOn: 'Stop listening', micOff: 'Ask by voice', listening: 'Listening…', typeHere: 'Or type here', question: 'Question', ask: 'Ask',
+    engineAI: 'Answer from Amazon Nova (Strands agent)', engineLocal: 'Answered on the phone (offline)', engineRules: 'Rule-based answer', secs: 's',
+    noMic: 'Voice input does not work in this browser. Type your question below.',
+    from: 'to', cig: 'cigarettes', min: 'min', road: 'PM2.5 on the road', next6: 'Next 6 hours', breakTitle: 'Rest in cleaner air', now: 'Now', timeline: 'Smoke over the next hours',
+  },
+}
+
 export default function Rider() {
   const d = useData()
+  const [lang, setLang] = useState<Lang>(() => (store.get('saans-lang', 'hi') === 'en' ? 'en' : 'hi'))
+  const t = UI[lang]
   const [pos, setPos] = useState<{ lat: number; lon: number; demo: boolean }>({ ...m.DTU, demo: true })
   const [air, setAir] = useState<Air | null>(null)
   const [shiftStart, setShiftStart] = useState(() => Number(store.get('saans-shift', '9')))
@@ -32,6 +63,7 @@ export default function Rider() {
   }, [])
   useEffect(() => { liveAir(d, pos.lat, pos.lon).then(setAir) }, [d, pos])
   useEffect(() => { store.set('saans-shift', String(shiftStart)) }, [shiftStart])
+  useEffect(() => { store.set('saans-lang', lang); document.documentElement.lang = lang }, [lang])
 
   const shift = useMemo(() => {
     const hrs = Math.max(0, Math.min(14, m.istHour() + m.istMinute() / 60 - shiftStart))
@@ -40,36 +72,37 @@ export default function Rider() {
 
   const pm = air?.pm25 ?? m.expectedPm(d, pos.lat, pos.lon, m.istHour())
   const nearby = d.breaks.length ? m.cleanBreaks(d, pos.lat, pos.lon, 1)[0] : null
-  const suggestions = [
-    nearby ? `${nearby.name} से ${d.zones[d.zones.length - 1].name} जा रहा हूँ` : `${d.zones[0].name} से ${d.zones[d.zones.length - 1].name} जा रहा हूँ`,
-    'पास में साफ़ हवा कहाँ है?',
-    'आज कितना धुआँ लिया?',
-    'कब निकलूँ?',
-  ]
+  const suggestions = [t.going(nearby ? nearby.name : d.zones[0].name, d.zones[d.zones.length - 1].name), ...t.chips]
+
+  function switchLang() {
+    recRef.current?.stop()
+    setLang(l => (l === 'hi' ? 'en' : 'hi'))
+    setAns(null); setHeard(''); setText('')
+  }
 
   async function submit(q: string) {
     const query = q.trim()
     if (!query || busy) return
     setBusy(true); setHeard(query); setText('')
     try {
-      const a = await ask(d, query, { lat: pos.lat, lon: pos.lon, shift_start: shiftStart, rider_id: riderId })
-      setAns(a); speak(a)
+      const a = await ask(d, query, { lat: pos.lat, lon: pos.lon, shift_start: shiftStart, rider_id: riderId, lang })
+      setAns(a); speak({ ...a, lang: a.lang ?? lang })
     } finally { setBusy(false) }
   }
 
   function toggleMic() {
     const W = window as unknown as { SpeechRecognition?: new () => SR; webkitSpeechRecognition?: new () => SR }
     const Ctor = W.SpeechRecognition || W.webkitSpeechRecognition
-    if (!Ctor) { alertNoMic(); return }
+    if (!Ctor) { setHeard(''); setAns({ reply: t.noMic, cards: {}, engine: 'ui' }); return }
     if (listening) { recRef.current?.stop(); return }
     const rec = new Ctor()
-    rec.lang = 'hi-IN'; rec.interimResults = true; rec.continuous = false
+    rec.lang = lang === 'en' ? 'en-IN' : 'hi-IN'; rec.interimResults = true; rec.continuous = false
     let finalText = ''
     rec.onresult = e => {
       const r = Array.from(e.results as ArrayLike<ArrayLike<{ transcript: string }> & { isFinal: boolean }>)
-      const t = r.map(x => x[0].transcript).join(' ')
-      setText(t)
-      if (r[r.length - 1].isFinal) finalText = t
+      const txt = r.map(x => x[0].transcript).join(' ')
+      setText(txt)
+      if (r[r.length - 1].isFinal) finalText = txt
     }
     rec.onend = () => { setListening(false); if (finalText) submit(finalText) }
     rec.onerror = () => setListening(false)
@@ -77,46 +110,49 @@ export default function Rider() {
     setListening(true)
     rec.start()
   }
-  function alertNoMic() { setHeard(''); setAns({ reply: 'इस ब्राउज़र में आवाज़ से पूछना नहीं चलता। नीचे लिखकर पूछें।', cards: {}, engine: 'ui' }) }
 
-  const haze = m.smogColor(pm)
+  const cat = lang === 'en' ? m.category(pm).en.toLowerCase() : m.category(pm).hi
+  const engineText = !ans ? '' : ans.engine.startsWith('strands') ? t.engineAI : ans.engine === 'rules' ? t.engineRules : t.engineLocal
   return (
-    <main className="rider" style={{ ['--haze' as string]: haze }}>
+    <main className="rider" style={{ ['--haze' as string]: m.smogColor(pm) }}>
       <header className="r-top">
-        <Link to="/" className="brand">साँस</Link>
-        <div className={`air-chip band-${m.bandIndex(pm)}`}>
-          <span className="pm">{Math.round(pm)}</span>
-          <span className="pm-meta">PM2.5, {m.category(pm).hi}<br /><small>{air?.source === 'live' ? `लाइव, ${air.station.split(',')[0]}` : 'इस समय का आम स्तर'}</small></span>
+        <Link to="/" className="brand">{t.brand}</Link>
+        <div className="r-top-right">
+          <button className="lang-toggle" onClick={switchLang} aria-label={t.switchLabel} lang={lang === 'hi' ? 'en' : 'hi'}>{t.switchTo}</button>
+          <div className={`air-chip band-${m.bandIndex(pm)}`}>
+            <span className="pm">{Math.round(pm)}</span>
+            <span className="pm-meta">PM2.5, {cat}<br /><small>{air?.source === 'live' ? t.live(air.station.split(',')[0]) : t.typical}</small></span>
+          </div>
         </div>
       </header>
 
       <section className="r-dose" aria-live="polite">
-        <p className="r-label">आज की शिफ़्ट में अब तक</p>
+        <p className="r-label">{t.soFar}</p>
         <div className="r-dose-row">
           <b className="r-num">{shift.cigarettes.toFixed(1)}</b>
-          <span className="r-unit">सिगरेट जितना धुआँ</span>
+          <span className="r-unit">{t.unit}</span>
         </div>
         <Cigarettes value={shift.cigarettes} size="sm" max={8} />
         <p className="r-shift">
-          शिफ़्ट शुरू हुई
-          <select value={shiftStart} onChange={e => setShiftStart(Number(e.target.value))} aria-label="शिफ़्ट शुरू होने का समय">
-            {Array.from({ length: 12 }, (_, i) => i + 5).map(h => <option key={h} value={h}>{m.hourHi(h)}</option>)}
+          {t.shiftStarted}
+          <select value={shiftStart} onChange={e => setShiftStart(Number(e.target.value))} aria-label={t.shiftLabel}>
+            {Array.from({ length: 12 }, (_, i) => i + 5).map(h => <option key={h} value={h}>{m.hourLabel(h, lang)}</option>)}
           </select>
-          {pos.demo && <small>, जगह: DTU (डेमो)</small>}
+          {pos.demo && <small>{t.demoPlace}</small>}
         </p>
       </section>
 
       <section className="r-answer">
         {heard && <p className="you">“{heard}”</p>}
-        {busy && <p className="thinking">सोच रहा हूँ…</p>}
+        {busy && <p className="thinking">{t.thinking}</p>}
         {ans && !busy && (
           <>
             <p className="reply">{ans.reply}</p>
-            <AnswerCards ans={ans} />
-            <button className="link-btn" onClick={() => speak(ans)}>फिर से सुनें</button>
+            <AnswerCards ans={ans} lang={lang} />
+            {ans.engine !== 'ui' && <button className="link-btn" onClick={() => speak({ ...ans, lang: ans.lang ?? lang })}>{t.replay}</button>}
           </>
         )}
-        {!heard && !ans && <p className="hint">माइक दबाकर हिंदी में पूछें, जैसे “आनंद विहार से नोएडा जा रहा हूँ”।</p>}
+        {!heard && !ans && <p className="hint">{t.hint}</p>}
       </section>
 
       <section className="r-ask">
@@ -124,47 +160,48 @@ export default function Rider() {
           {suggestions.map(s => <button key={s} onClick={() => submit(s)} disabled={busy}>{s}</button>)}
         </div>
         <form onSubmit={e => { e.preventDefault(); submit(text) }} className="ask-row">
-          <button type="button" className={`mic ${listening ? 'on' : ''}`} onClick={toggleMic} aria-label={listening ? 'सुनना बंद करें' : 'बोलकर पूछें'} disabled={busy}>
+          <button type="button" className={`mic ${listening ? 'on' : ''}`} onClick={toggleMic} aria-label={listening ? t.micOn : t.micOff} disabled={busy}>
             <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-2.08A7 7 0 0 0 19 12h-2Z" fill="currentColor" /></svg>
           </button>
-          <input value={text} onChange={e => setText(e.target.value)} placeholder={listening ? 'सुन रहा हूँ…' : 'या यहाँ लिखें'} aria-label="सवाल" />
-          <button type="submit" className="send" disabled={busy || !text.trim()}>पूछें</button>
+          <input value={text} onChange={e => setText(e.target.value)} placeholder={listening ? t.listening : t.typeHere} aria-label={t.question} />
+          <button type="submit" className="send" disabled={busy || !text.trim()}>{t.ask}</button>
         </form>
-        {ans && <p className="engine">{ans.engine.startsWith('strands') ? 'Amazon Nova (Strands agent) से जवाब' : 'फ़ोन पर बना जवाब (ऑफ़लाइन)'}{ans.ms ? `, ${(ans.ms / 1000).toFixed(1)} सेकंड` : ''}</p>}
+        {ans && ans.engine !== 'ui' && <p className="engine">{engineText}{ans.ms ? `, ${(ans.ms / 1000).toFixed(1)} ${t.secs}` : ''}</p>}
       </section>
     </main>
   )
 }
 
-function AnswerCards({ ans }: { ans: Answer }) {
+function AnswerCards({ ans, lang }: { ans: Answer; lang: Lang }) {
+  const t = UI[lang]
   const c = ans.cards
   return (
     <div className="cards">
       {c.trip && (
         <div className="card trip">
-          <div className="card-head"><b>{c.trip.from}</b> से <b>{c.trip.to}</b></div>
+          <div className="card-head">{lang === 'en' ? 'From ' : ''}<b>{c.trip.from}</b> {t.from} <b>{c.trip.to}</b></div>
           <div className="trip-row">
             <Cigarettes value={c.trip.cigarettes} size="sm" max={4} />
             <div>
-              <p className="big">{c.trip.cigarettes < 0.1 ? '<0.1' : c.trip.cigarettes.toFixed(2)} <small>सिगरेट</small></p>
-              <p>{c.trip.minutes} मिनट, {c.trip.distance_km} km, सड़क पर PM2.5 {c.trip.onroad_pm25}</p>
+              <p className="big">{c.trip.cigarettes < 0.1 ? '<0.1' : c.trip.cigarettes.toFixed(2)} <small>{t.cig}</small></p>
+              <p>{c.trip.minutes} {t.min}, {c.trip.distance_km} km, {t.road} {c.trip.onroad_pm25}</p>
             </div>
           </div>
-          <Timeline options={c.trip.options} best={c.trip.best_departure.hour} />
+          <Timeline options={c.trip.options} best={c.trip.best_departure.hour} lang={lang} />
         </div>
       )}
       {c.timing && !c.trip && (
         <div className="card">
-          <div className="card-head">अगले 6 घंटे</div>
-          <Timeline options={c.timing.options} best={c.timing.best.hour} />
+          <div className="card-head">{t.next6}</div>
+          <Timeline options={c.timing.options} best={c.timing.best.hour} lang={lang} />
         </div>
       )}
       {c.breaks && c.breaks.length > 0 && (
         <div className="card breaks">
-          <div className="card-head">साफ़ हवा में आराम</div>
+          <div className="card-head">{t.breakTitle}</div>
           {c.breaks.map(b => (
             <a key={b.name} href={b.maps} target="_blank" rel="noreferrer" className="spot">
-              <span>{b.name}</span><span>{b.minutes} मिनट</span>
+              <span>{b.name}</span><span>{b.minutes} {t.min}</span>
             </a>
           ))}
         </div>
@@ -173,14 +210,15 @@ function AnswerCards({ ans }: { ans: Answer }) {
   )
 }
 
-function Timeline({ options, best }: { options: { hour: number; pm25: number }[]; best: number }) {
+function Timeline({ options, best, lang }: { options: { hour: number; pm25: number }[]; best: number; lang: Lang }) {
+  const t = UI[lang]
   const max = Math.max(...options.map(o => o.pm25))
   return (
-    <div className="timeline" role="list" aria-label="अगले घंटों में धुआँ">
+    <div className="timeline" role="list" aria-label={t.timeline}>
       {options.map((o, i) => (
         <div key={i} role="listitem" className={`tl ${o.hour === best ? 'best' : ''}`}>
           <span className="tl-bar" style={{ height: `${Math.max(8, (o.pm25 / max) * 56)}px`, background: m.smogColor(o.pm25) }} />
-          <span className="tl-h">{i === 0 ? 'अभी' : m.hourEn(o.hour)}</span>
+          <span className="tl-h">{i === 0 ? t.now : m.hourEn(o.hour)}</span>
         </div>
       ))}
     </div>

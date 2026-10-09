@@ -182,3 +182,6 @@ h2 { font-size: 2rem; }
   .map { height: 360px; }
   .roster .num { width: auto; }
 }
+.r-top-right { display: flex; align-items: center; gap: .5rem; }
+.lang-toggle { border: 1.5px solid var(--ink); background: rgba(255,255,255,.6); border-radius: 999px; padding: .3rem .8rem; font-weight: 700; cursor: pointer; min-height: 40px; }
+.lang-toggle:hover { background: var(--ink); color: #fff; }

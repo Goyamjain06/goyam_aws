@@ -35,7 +35,8 @@ def _ctx(b: dict) -> dict:
     except (TypeError, ValueError):
         lat, lon = DELHI_DEFAULT
     return {"lat": lat, "lon": lon, "shift_start": int(b.get("shift_start") or 9),
-            "rider_id": str(b.get("rider_id") or "")[:64], "cards": {}}
+            "rider_id": str(b.get("rider_id") or "")[:64], "cards": {},
+            "lang": "en" if b.get("lang") == "en" else "hi"}
 
 
 def ask(b: dict) -> dict:
@@ -55,7 +56,7 @@ def ask(b: dict) -> dict:
     if out["cards"].get("trip"):
         aws.log_trip(ctx["rider_id"], out["cards"]["trip"])
     if b.get("speak", True):
-        out["audio_mp3_b64"] = aws.speak(out["reply"])
+        out["audio_mp3_b64"] = aws.speak(out["reply"], ctx["lang"])
     out["today"] = aws.rider_today(ctx["rider_id"])
     return _resp(200, out)
 
@@ -72,7 +73,8 @@ def lambda_handler(event, _context):
         if path == "/ask" and method == "POST":
             return ask(_body(event))
         if path == "/speak" and method == "POST":
-            return _resp(200, {"audio_mp3_b64": aws.speak(str(_body(event).get("text", ""))[:1500])})
+            b = _body(event)
+            return _resp(200, {"audio_mp3_b64": aws.speak(str(b.get("text", ""))[:1500], "en" if b.get("lang") == "en" else "hi")})
         if path == "/live":
             if qs.get("all"):
                 return _resp(200, {"stations": live.all_stations_now()})

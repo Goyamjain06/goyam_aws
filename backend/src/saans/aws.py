@@ -14,13 +14,13 @@ _polly = None
 _table = None
 
 
-def speak(text: str) -> str | None:
-    """Hindi speech as base64 MP3 using Amazon Polly's neural Hindi voice (Kajal)."""
+def speak(text: str, lang: str = "hi") -> str | None:
+    """Speech as base64 MP3 using Amazon Polly's neural voice Kajal (bilingual Hindi / Indian English)."""
     global _polly
     try:
         _polly = _polly or boto3.client("polly")
         out = _polly.synthesize_speech(Text=text[:1500], OutputFormat="mp3", VoiceId="Kajal",
-                                       Engine="neural", LanguageCode="hi-IN")
+                                       Engine="neural", LanguageCode="en-IN" if lang == "en" else "hi-IN")
         return base64.b64encode(out["AudioStream"].read()).decode()
     except Exception as e:  # never break the answer because of audio
         print(f"polly error: {e}")
