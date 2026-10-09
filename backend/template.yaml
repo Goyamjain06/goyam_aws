@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Saans - pollution-aware assistant for delivery riders (Strands Agents + Amazon Nova + Polly)
+
+Parameters:
+  OpenAQApiKey:
+    Type: String
+    NoEcho: true
+    Default: ""
+    Description: Free OpenAQ API key for live PM2.5 (https://explore.openaq.org)
+  ModelId:
+    Type: String
+    Default: us.amazon.nova-pro-v1:0
+    Description: Amazon Bedrock model / inference profile used by the Strands agent
+
+Globals:
+  Function:
+    Runtime: python3.12
+    Architectures: [arm64]
+    MemorySize: 1024
+    Timeout: 60
+
+Resources:
+  RiderTrips:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - { AttributeName: rider_id, AttributeType: S }
+        - { AttributeName: ts, AttributeType: S }
+      KeySchema:
+        - { AttributeName: rider_id, KeyType: HASH }
+        - { AttributeName: ts, KeyType: RANGE }
+      TimeToLiveSpecification: { AttributeName: expires, Enabled: true }
+
+  SaansFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: makefile
+    Properties:
+      CodeUri: .
+      Handler: handler.lambda_handler
+      ReservedConcurrentExecutions: 5   # public demo endpoint: cap cost
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref RiderTrips
+          OPENAQ_API_KEY: !Ref OpenAQApiKey
+          MODEL_ID: !Ref ModelId
+      Policies:
+        - DynamoDBCrudPolicy: { TableName: !Ref RiderTrips }
+        - Statement:
+            - Effect: Allow
+              Action: [bedrock:InvokeModel, bedrock:InvokeModelWithResponseStream]
+              Resource: "*"
+            - Effect: Allow
+              Action: [polly:SynthesizeSpeech]
+              Resource: "*"
+      FunctionUrlConfig:
+        AuthType: NONE
+        Cors:
+          AllowOrigins: ["*"]
+          AllowMethods: ["GET", "POST"]
+          AllowHeaders: ["content-type"]
+          MaxAge: 3600
+
+Outputs:
+  ApiUrl:
+    Description: Saans API base URL
+    Value: !GetAtt SaansFunctionUrl.FunctionUrl
+  TableName:
+    Value: !Ref RiderTrips

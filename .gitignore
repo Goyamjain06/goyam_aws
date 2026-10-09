@@ -1,0 +1,11 @@
+node_modules/
+dist/
+dist.zip
+.aws-sam/
+.env
+.env.*
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+samconfig.toml
