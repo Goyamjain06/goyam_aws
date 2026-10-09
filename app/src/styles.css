@@ -212,3 +212,12 @@ h2 { font-size: 2rem; }
 .src-badge { margin: .5rem 0 0; font-size: .75rem; color: var(--muted); }
 .src-badge.live { color: var(--ink-2); font-weight: 600; }
 .shift-tip, .break-extra { margin: .5rem 0 0; font-size: .85rem; color: var(--ink-2); }
+
+.sim-controls { display: grid; gap: 1rem; margin: 1rem 0; }
+.sim-controls fieldset { border: 1px solid var(--line); border-radius: 8px; display: grid; gap: .4rem; padding: .8rem 1rem; }
+.sim-fields { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+.sim-fields label { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+.sim-result { background: var(--ink); color: #fff; border-radius: 12px; padding: 1.2rem 1.4rem; }
+.sim-stat { margin: 0; font-size: 1.3rem; }
+.sim-stat b { font-family: var(--display); font-size: 1.8rem; }
+.sim-sub { margin: .3rem 0 0; opacity: .85; }

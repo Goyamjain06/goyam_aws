@@ -163,3 +163,43 @@ export const hourEn = (h: number) => { const h12 = h % 12 || 12; return `${h12}$
 export const hourLabel = (h: number, lang: 'hi' | 'en') => (lang === 'en' ? hourEn(((h % 24) + 24) % 24) : hourHi(h))
 export const cigLabel = (c: number, lang: 'hi' | 'en') =>
   lang === 'en' ? (c < 0.1 ? 'less than a tenth of a cigarette' : `about ${Math.round(c * 10) / 10} cigarettes`) : cigHi(c)
+
+export type SmogRule =
+  | { kind: 'window'; start: number; end: number; zone: string | 'all' }
+  | { kind: 'break'; minutes: number }
+
+// What a station rule does to a roster's shift dose. Same dose maths as the roster table:
+// zone hourly median x onroad factor over the shift, as cigarettes. A window rule removes those hours;
+// a break rule swaps the onroad factor for INDOOR_FACTOR for the break minutes in the worst hour of the shift.
+export function simulateRule(d: AQData, riders: { zone: string; start: number }[], rule: SmogRule) {
+  const c = d.constants
+  const inWindow = (h: number) => {
+    if (rule.kind !== 'window' || rule.start === rule.end) return false
+    return rule.end > rule.start ? h >= rule.start && h < rule.end : h >= rule.start || h < rule.end
+  }
+  let before = 0, after = 0, hoursAffected = 0, breakMinutes = 0
+  for (const r of riders) {
+    const z = d.zones.find(x => x.name === r.zone)
+    if (!z) continue
+    let dose = 0, kept = 0, worst = 0
+    for (let i = 0; i < c.shift_hours; i++) {
+      const h = (r.start + i) % 24
+      const pm = z.hourly_median[h]
+      dose += pm * c.onroad_factor
+      worst = Math.max(worst, pm)
+      if (rule.kind === 'window' && (rule.zone === 'all' || rule.zone === r.zone) && inWindow(h)) hoursAffected++
+      else kept += pm * c.onroad_factor
+    }
+    before += cigarettes(d, dose)
+    if (rule.kind === 'window') after += cigarettes(d, kept)
+    else {
+      const mins = Math.min(60, Math.max(0, rule.minutes))
+      breakMinutes += mins
+      after += cigarettes(d, dose - worst * (c.onroad_factor - INDOOR_FACTOR) * (mins / 60))
+    }
+  }
+  return {
+    before, after, pctLess: before ? Math.round((1 - after / before) * 100) : 0,
+    hoursAffected, breakMinutesPerRider: riders.length ? breakMinutes / riders.length : 0,
+  }
+}

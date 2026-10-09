@@ -111,6 +111,8 @@ export default function Station() {
         </table>
       </section>
 
+      <RuleSim d={d} riders={riders} />
+
       <section className="block">
         <h2>Where the next rest points should go</h2>
         <p className="sub">Metro stations ranked by the street-level smoke around them from 9am to 9pm. Combine with delivery density to choose sites for new rest points.</p>
@@ -127,6 +129,54 @@ export default function Station() {
         </div>
       </section>
     </main>
+  )
+}
+
+function RuleSim({ d, riders }: { d: AQData; riders: Rider[] }) {
+  const [kind, setKind] = useState<'window' | 'break'>('window')
+  const [start, setStart] = useState(22)
+  const [end, setEnd] = useState(2)
+  const [zone, setZone] = useState('all')
+  const [minutes, setMinutes] = useState(15)
+  const rule: m.SmogRule = kind === 'window' ? { kind, start, end, zone } : { kind, minutes }
+  const r = useMemo(() => m.simulateRule(d, riders, rule), [d, riders, kind, start, end, zone, minutes]) // eslint-disable-line
+  const hours = Array.from({ length: 24 }, (_, h) => <option key={h} value={h}>{m.hourEn(h)}</option>)
+  return (
+    <section className="block rule-sim">
+      <h2>Try a smog rule</h2>
+      <p className="sub">Pick a rule and see what it does to the fleet's smoke dose.</p>
+      <div className="sim-controls">
+        <fieldset>
+          <legend>Rule type</legend>
+          <label><input type="radio" name="rule-kind" checked={kind === 'window'} onChange={() => setKind('window')} /> No deliveries in a time window</label>
+          <label><input type="radio" name="rule-kind" checked={kind === 'break'} onChange={() => setKind('break')} /> Mandatory break</label>
+        </fieldset>
+        {kind === 'window' ? (
+          <div className="sim-fields">
+            <label>From <select value={start} onChange={e => setStart(Number(e.target.value))}>{hours}</select></label>
+            <label>To <select value={end} onChange={e => setEnd(Number(e.target.value))}>{hours}</select></label>
+            <label>Zone <select value={zone} onChange={e => setZone(e.target.value)}>
+              <option value="all">All zones</option>
+              {d.zones.map(z => <option key={z.name} value={z.name}>{z.name}</option>)}
+            </select></label>
+          </div>
+        ) : (
+          <div className="sim-fields">
+            <label>Break length: <b>{minutes} min</b>
+              <input type="range" min={0} max={30} step={1} value={minutes} onChange={e => setMinutes(Number(e.target.value))} />
+            </label>
+            <small>Taken in the worst hour of each shift, at a clean indoor spot like a metro station.</small>
+          </div>
+        )}
+      </div>
+      <div className="sim-result" aria-live="polite">
+        <p className="sim-stat">Fleet dose <b>{r.before.toFixed(1)}</b> to <b>{r.after.toFixed(1)}</b> cigarettes, <b>{r.pctLess}% less</b></p>
+        <p className="sim-sub">
+          {kind === 'window' ? `Delivery hours affected: ${r.hoursAffected} rider-hours` : `Break per rider: ${Math.round(r.breakMinutesPerRider)} min`}
+        </p>
+      </div>
+      <p className="sub">Example roster of {riders.length} riders and typical-season air. An estimate, not a measurement.</p>
+    </section>
   )
 }
 
