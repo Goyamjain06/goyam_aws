@@ -27,6 +27,7 @@ export default function Landing() {
         <div className="hero-meter">
           <Cigarettes value={h.typical_shift.cigarettes} label={`${h.typical_shift.cigarettes} cigarettes per 10am to 8pm shift`} />
           <p>10am to 8pm shift, on the road, typical day</p>
+          <p className="cig-scale">1 cigarette ≈ {Math.round(d.constants.cig_ugm3_hours / 24)} µg/m³ of PM2.5 for a day</p>
         </div>
       </section>
 
@@ -34,6 +35,7 @@ export default function Landing() {
         <div><b>{h.times_who}×</b><span>the WHO limit, on average, across {d.meta.stations} monitors</span></div>
         <div><b>{h.pct_hours_over_naaqs}%</b><span>of hours above India's own PM2.5 limit</span></div>
         <div><b>{h.best_vs_worst_saving_pct}%</b><span>less smoke on the best shift ({hourEn(h.best_shift.start)} start) than the worst ({hourEn(h.worst_shift.start)})</span></div>
+        <p className="pm-explain">PM2.5 = tiny smoke particles that reach your lungs</p>
       </section>
 
       <section className="block">

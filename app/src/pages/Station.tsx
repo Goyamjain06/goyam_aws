@@ -78,7 +78,7 @@ export default function Station() {
       <section className="block">
         <div className="fleet-head">
           <div>
-            <h2>Today's roster</h2>
+            <h2>Today's roster <span className="demo-chip">Demo data</span></h2>
             <p className="sub">Example roster of {plan.length} riders on 10-hour shifts. Riders whose dose drops by 10% or more with a different start time are marked.</p>
           </div>
           <div className="fleet-total">

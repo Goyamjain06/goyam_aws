@@ -24,6 +24,9 @@ const UI = {
     micOn: 'सुनना बंद करें', micOff: 'बोलकर पूछें', listening: 'सुन रहा हूँ…', typeHere: 'या यहाँ लिखें', question: 'सवाल', ask: 'पूछें',
     engineAI: 'Amazon Nova (Strands agent) से जवाब', engineLocal: 'फ़ोन पर बना जवाब (ऑफ़लाइन)', engineRules: 'नियमों से बना जवाब', secs: 'सेकंड',
     noMic: 'इस ब्राउज़र में आवाज़ से पूछना नहीं चलता। नीचे लिखकर पूछें।',
+    pmExplain: 'PM2.5 = बहुत बारीक धुएँ के कण जो फेफड़ों तक पहुँचते हैं', airLabel: 'हवा',
+    example: 'आनंद विहार से राजीव चौक', exampleQuery: 'आनंद विहार से राजीव चौक जा रहा हूँ', tryExample: 'उदाहरण आज़माएँ',
+    cigScale: (n: number) => `1 सिगरेट ≈ दिन भर ${n} µg/m³ PM2.5`,
     from: 'से', cig: 'सिगरेट', min: 'मिनट', road: 'सड़क पर PM2.5', next6: 'अगले 6 घंटे', breakTitle: 'साफ़ हवा में आराम', now: 'अभी', timeline: 'अगले घंटों में धुआँ',
   },
   en: {
@@ -37,6 +40,9 @@ const UI = {
     micOn: 'Stop listening', micOff: 'Ask by voice', listening: 'Listening…', typeHere: 'Or type here', question: 'Question', ask: 'Ask',
     engineAI: 'Answer from Amazon Nova (Strands agent)', engineLocal: 'Answered on the phone (offline)', engineRules: 'Rule-based answer', secs: 's',
     noMic: 'Voice input does not work in this browser. Type your question below.',
+    pmExplain: 'PM2.5 = tiny smoke particles that reach your lungs', airLabel: 'PM2.5',
+    example: 'Anand Vihar to Rajiv Chowk', exampleQuery: 'Going from Anand Vihar to Rajiv Chowk', tryExample: 'Try an example',
+    cigScale: (n: number) => `1 cigarette ≈ ${n} µg/m³ of PM2.5 for a day`,
     from: 'to', cig: 'cigarettes', min: 'min', road: 'PM2.5 on the road', next6: 'Next 6 hours', breakTitle: 'Rest in cleaner air', now: 'Now', timeline: 'Smoke over the next hours',
   },
 }
@@ -121,10 +127,11 @@ export default function Rider() {
           <button className="lang-toggle" onClick={switchLang} aria-label={t.switchLabel} lang={lang === 'hi' ? 'en' : 'hi'}>{t.switchTo}</button>
           <div className={`air-chip band-${m.bandIndex(pm)}`}>
             <span className="pm">{Math.round(pm)}</span>
-            <span className="pm-meta">PM2.5, {cat}<br /><small>{air?.source === 'live' ? t.live(air.station.split(',')[0]) : t.typical}</small></span>
+            <span className="pm-meta">{lang === 'hi' ? `${t.airLabel}: ${cat}` : `${t.airLabel}, ${cat}`}<br /><small>{air?.source === 'live' ? t.live(air.station.split(',')[0]) : t.typical}</small></span>
           </div>
         </div>
       </header>
+      <p className="pm-explain">{t.pmExplain}</p>
 
       <section className="r-dose" aria-live="polite">
         <p className="r-label">{t.soFar}</p>
@@ -133,6 +140,7 @@ export default function Rider() {
           <span className="r-unit">{t.unit}</span>
         </div>
         <Cigarettes value={shift.cigarettes} size="sm" max={8} />
+        <p className="cig-scale">{t.cigScale(Math.round(d.constants.cig_ugm3_hours / 24))}</p>
         <p className="r-shift">
           {t.shiftStarted}
           <select value={shiftStart} onChange={e => setShiftStart(Number(e.target.value))} aria-label={t.shiftLabel}>
@@ -152,7 +160,15 @@ export default function Rider() {
             {ans.engine !== 'ui' && <button className="link-btn" onClick={() => speak({ ...ans, lang: ans.lang ?? lang })}>{t.replay}</button>}
           </>
         )}
-        {!heard && !ans && <p className="hint">{t.hint}</p>}
+        {!heard && !ans && (
+          <div className="try-example">
+            <button onClick={() => submit(t.exampleQuery)} disabled={busy}>
+              <small>{t.tryExample}</small>
+              {t.example}
+            </button>
+            <p className="hint">{t.hint}</p>
+          </div>
+        )}
       </section>
 
       <section className="r-ask">

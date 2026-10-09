@@ -185,3 +185,24 @@ h2 { font-size: 2rem; }
 .r-top-right { display: flex; align-items: center; gap: .5rem; }
 .lang-toggle { border: 1.5px solid var(--ink); background: rgba(255,255,255,.6); border-radius: 999px; padding: .3rem .8rem; font-weight: 700; cursor: pointer; min-height: 40px; }
 .lang-toggle:hover { background: var(--ink); color: #fff; }
+
+/* ---------- explainers and demo affordances */
+.pm-explain { color: var(--ink-2); font-size: .9rem; margin: 0; }
+.facts .pm-explain { grid-column: 1 / -1; }
+.rider > .pm-explain { margin-top: -.2rem; }
+.cig-scale { color: var(--ink-2); font-size: .85rem; margin: .4rem 0 0; }
+.hero-meter .cig-scale { margin-top: .25rem; font-size: .85rem; }
+.try-example { display: grid; place-items: center; gap: .6rem; padding: 1.5rem 0; text-align: center; }
+.try-example button { display: grid; gap: .1rem; width: 100%; max-width: 340px; border: 2px solid var(--clean); background: #fff; color: var(--clean-ink); border-radius: 14px; padding: 1rem 1.2rem; font-size: 1.3rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 14px rgba(23,118,111,.15); }
+.try-example button small { font-size: .85rem; font-weight: 500; color: var(--ink-2); }
+.try-example button:hover { background: var(--clean); color: #fff; }
+.try-example button:hover small { color: #fff; }
+.try-example button:disabled { opacity: .45; cursor: default; }
+.try-example .hint { margin: 0; }
+.demo-chip { display: inline-block; vertical-align: middle; margin-left: .5rem; padding: .15rem .6rem; border-radius: 999px; border: 1px dashed var(--ink-2); color: var(--ink-2); font-family: var(--text); font-size: .85rem; font-weight: 700; letter-spacing: 0; }
+
+@media (min-width: 1024px) {
+  body:has(.rider) { background: #DDE2DF; }
+  .rider { max-width: 560px; min-height: calc(100dvh - 3rem); margin: 1.5rem auto; border-radius: 24px; border: 1px solid var(--line); box-shadow: 0 12px 40px rgba(30,39,44,.18); padding: 0 1.5rem 1.5rem; }
+  .r-ask { border-radius: 0 0 24px 24px; }
+}
