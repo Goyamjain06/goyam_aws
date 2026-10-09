@@ -26,6 +26,9 @@ const UI = {
     noMic: 'इस ब्राउज़र में आवाज़ से पूछना नहीं चलता। नीचे लिखकर पूछें।',
     pmExplain: 'PM2.5 = बहुत बारीक धुएँ के कण जो फेफड़ों तक पहुँचते हैं', airLabel: 'हवा',
     example: 'आनंद विहार से राजीव चौक', exampleQuery: 'आनंद विहार से राजीव चौक जा रहा हूँ', tryExample: 'उदाहरण आज़माएँ',
+    away: (n: number) => `${n} मिनट दूर`, extra: (n: number) => `ब्रेक लेने में आना-जाना मिलाकर लगभग ${n} मिनट extra लगेगा`,
+    badgeLive: 'लाइव रीडिंग', badgeEst: 'अनुमान: इस समय का आम स्तर',
+    shiftTip: 'शिफ़्ट नहीं बदल सकते? सबसे गंदा समय रात 10 से 2 बजे है, उस दौरान एक 15 मिनट का ब्रेक किसी साफ़ जगह पर लो।',
     cigScale: (n: number) => `1 सिगरेट ≈ दिन भर ${n} µg/m³ PM2.5`,
     from: 'से', cig: 'सिगरेट', min: 'मिनट', road: 'सड़क पर PM2.5', next6: 'अगले 6 घंटे', breakTitle: 'साफ़ हवा में आराम', now: 'अभी', timeline: 'अगले घंटों में धुआँ',
   },
@@ -42,6 +45,9 @@ const UI = {
     noMic: 'Voice input does not work in this browser. Type your question below.',
     pmExplain: 'PM2.5 = tiny smoke particles that reach your lungs', airLabel: 'PM2.5',
     example: 'Anand Vihar to Rajiv Chowk', exampleQuery: 'Going from Anand Vihar to Rajiv Chowk', tryExample: 'Try an example',
+    away: (n: number) => `${n} min away`, extra: (n: number) => `Going to a break spot and back will take about ${n} min extra`,
+    badgeLive: 'Live reading', badgeEst: 'Estimate: typical level for this hour',
+    shiftTip: "Can't change your shift? The dirtiest time is 10 pm to 2 am. During that time, take a 15 minute break at a clean place.",
     cigScale: (n: number) => `1 cigarette ≈ ${n} µg/m³ of PM2.5 for a day`,
     from: 'to', cig: 'cigarettes', min: 'min', road: 'PM2.5 on the road', next6: 'Next 6 hours', breakTitle: 'Rest in cleaner air', now: 'Now', timeline: 'Smoke over the next hours',
   },
@@ -160,7 +166,7 @@ export default function Rider() {
         {ans && !busy && (
           <>
             <p className="reply">{ans.reply}</p>
-            <AnswerCards ans={ans} lang={lang} />
+            <AnswerCards ans={ans} lang={lang} live={air?.source === 'live'} />
             {ans.engine !== 'ui' && <button className="link-btn" onClick={() => speak({ ...ans, lang: ans.lang ?? lang })}>{t.replay}</button>}
           </>
         )}
@@ -192,9 +198,10 @@ export default function Rider() {
   )
 }
 
-function AnswerCards({ ans, lang }: { ans: Answer; lang: Lang }) {
+function AnswerCards({ ans, lang, live }: { ans: Answer; lang: Lang; live: boolean }) {
   const t = UI[lang]
   const c = ans.cards
+  const badge = (isLive: boolean) => <p className={`src-badge ${isLive ? 'live' : ''}`}>{isLive ? t.badgeLive : t.badgeEst}</p>
   return (
     <div className="cards">
       {c.trip && (
@@ -208,12 +215,15 @@ function AnswerCards({ ans, lang }: { ans: Answer; lang: Lang }) {
             </div>
           </div>
           <Timeline options={c.trip.options} best={c.trip.best_departure.hour} lang={lang} />
+          {badge(c.trip.used_live_data)}
         </div>
       )}
       {c.timing && !c.trip && (
         <div className="card">
           <div className="card-head">{t.next6}</div>
           <Timeline options={c.timing.options} best={c.timing.best.hour} lang={lang} />
+          {badge(c.air ? c.air.source === 'live' : live)}
+          {c.timing.saving_pct < 10 && <p className="shift-tip">{t.shiftTip}</p>}
         </div>
       )}
       {c.breaks && c.breaks.length > 0 && (
@@ -221,9 +231,10 @@ function AnswerCards({ ans, lang }: { ans: Answer; lang: Lang }) {
           <div className="card-head">{t.breakTitle}</div>
           {c.breaks.map(b => (
             <a key={b.name} href={b.maps} target="_blank" rel="noreferrer" className="spot">
-              <span>{b.name}</span><span>{b.minutes} {t.min}</span>
+              <span>{b.name}, {t.away(b.minutes)}</span>
             </a>
           ))}
+          <p className="break-extra">{t.extra(Math.min(...c.breaks.map(b => b.minutes)) * 2)}</p>
         </div>
       )}
     </div>
