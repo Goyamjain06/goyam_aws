@@ -60,7 +60,7 @@ say "Building the web app"
 say "Publishing to AWS Amplify Hosting"
 APP_ID=$(aws amplify list-apps --query "apps[?name=='$APP_NAME'].appId | [0]" --output text)
 if [[ "$APP_ID" == "None" || -z "$APP_ID" ]]; then
-  RULES='[{"source":"</^[^.]+$|\\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|woff2|ttf|map|json|webp|mp3)$)([^.]+$)/>","target":"/index.html","status":"200"}]'
+  RULES='[{"source":"</^[^.]+$|\\.(?!(css|gif|ico|jpg|js|png|txt|svg|webmanifest|woff|woff2|ttf|map|json|webp|mp3)$)([^.]+$)/>","target":"/index.html","status":"200"}]'
   APP_ID=$(aws amplify create-app --name "$APP_NAME" --platform WEB --custom-rules "$RULES" --query app.appId --output text)
   aws amplify create-branch --app-id "$APP_ID" --branch-name "$BRANCH" --stage PRODUCTION >/dev/null
 fi
