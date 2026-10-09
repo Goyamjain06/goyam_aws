@@ -1,4 +1,4 @@
-// Talks to the Saans backend on AWS Lambda. If it's unreachable, answers on-device with the same model.
+// Talks to the RideClean backend on AWS Lambda. If it's unreachable, answers on-device with the same model.
 import * as m from './model'
 import type { AQData, BreakSpot, Trip } from './model'
 

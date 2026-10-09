@@ -44,7 +44,7 @@ function Shell({ children }: { children: React.ReactNode }) {
   return (
     <>
       <header className="topbar">
-        <Link to="/" className="brand">साँस <span>Saans</span></Link>
+        <Link to="/" className="brand">RideClean</Link>
         <nav>
           <NavLink to="/rider">Rider app</NavLink>
           <NavLink to="/station">Station planner</NavLink>

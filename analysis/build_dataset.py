@@ -1,5 +1,5 @@
 """
-Saans data pipeline.
+RideClean data pipeline.
 
 Builds data/delhi_aq.json from real public data:
   1. Delhi NCR PM2.5 monitors   -> OpenAQ API v3 (needs a free OpenAQ API key)
@@ -63,7 +63,7 @@ CP = (28.6315, 77.2167)  # Connaught Place, used to split Delhi into zones
 # ----------------------------------------------------------------------------- helpers
 
 def log(msg: str) -> None:
-    print(f"[saans] {msg}", flush=True)
+    print(f"[rideclean] {msg}", flush=True)
 
 
 def haversine_km(lat1, lon1, lat2, lon2) -> float:
@@ -230,7 +230,7 @@ def fetch_metro_stations() -> list[dict]:
         for attempt in range(2):
             try:
                 resp = requests.post(url, data={"data": query}, timeout=180,
-                                     headers={"User-Agent": "saans-hackathon/1.0 (github.com/Goyamjain06/goyam_aws)"})
+                                     headers={"User-Agent": "rideclean-hackathon/1.0 (github.com/Goyamjain06/goyam_aws)"})
                 if resp.status_code in (429, 504):
                     log(f"overpass busy at {url} ({resp.status_code}), retrying...")
                     time.sleep(10)

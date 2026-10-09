@@ -1,5 +1,5 @@
 """
-Saans agent: Strands Agents SDK (AWS open source) + Amazon Nova on Amazon Bedrock.
+RideClean agent: Strands Agents SDK (AWS open source) + Amazon Nova on Amazon Bedrock.
 
 The model never invents numbers. Every figure comes from a tool backed by real monitor data.
 Tool results are also returned to the app as "cards" so the UI can draw them.
@@ -17,7 +17,7 @@ from .hindi import hour_label
 MODEL_ID = os.environ.get("MODEL_ID", "us.amazon.nova-pro-v1:0")
 REGION = os.environ.get("BEDROCK_REGION") or os.environ.get("AWS_REGION", "us-east-1")
 
-SYSTEM_PROMPT = """You are "Saans", a voice assistant for two-wheeler delivery riders in Delhi NCR.
+SYSTEM_PROMPT = """You are "RideClean", a voice assistant for two-wheeler delivery riders in Delhi NCR.
 Riders talk to you in Hindi or Hinglish while working. Air pollution is their invisible occupational hazard.
 
 RULES

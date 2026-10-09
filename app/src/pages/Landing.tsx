@@ -17,7 +17,7 @@ export default function Landing() {
           <h1>A delivery rider's 10-hour shift in Delhi's smog season is {h.typical_shift.cigarettes.toFixed(1)} cigarettes a day.</h1>
           <p className="lede">
             Amazon already stops deliveries from 1 to 4 pm in a heatwave. Smog has no such rule, so riders breathe it all shift without knowing how much.
-            Saans tells each rider their dose in Hindi and gives station managers the pollution version of the heat rule.
+            RideClean tells each rider their dose in Hindi and gives station managers the pollution version of the heat rule.
           </p>
           <div className="cta-row">
             <Link className="btn primary" to="/rider">Open the rider app</Link>
@@ -61,7 +61,7 @@ export default function Landing() {
         <h2>How the numbers are made</h2>
         <ul>
           <li>Hourly PM2.5 from {d.meta.stations} government monitors in Delhi NCR ({d.meta.station_hours.toLocaleString('en-IN')} station-hours), from the OpenAQ archive hosted on AWS Open Data.</li>
-          <li>Riders on two-wheelers breathe about 30% more PM2.5 than the nearest monitor shows (Delhi on-road study, Atmospheric Environment, 2015). Saans multiplies by 1.3.</li>
+          <li>Riders on two-wheelers breathe about 30% more PM2.5 than the nearest monitor shows (Delhi on-road study, Atmospheric Environment, 2015). RideClean multiplies by 1.3.</li>
           <li>22 µg/m³ of PM2.5 for a day is roughly one cigarette (Berkeley Earth). Breathing is faster while riding, so these figures are conservative.</li>
           <li>Clean-air break spots are metro stations from OpenStreetMap. Enclosed spaces cut exposure; an AC car sits at half the road level in the same study.</li>
         </ul>

@@ -40,7 +40,6 @@ Resources:
     Properties:
       CodeUri: .
       Handler: handler.lambda_handler
-      ReservedConcurrentExecutions: 5   # public demo endpoint: cap cost
       Environment:
         Variables:
           TABLE_NAME: !Ref RiderTrips

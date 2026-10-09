@@ -1,4 +1,4 @@
-# Saans (साँस): smog dose for delivery riders
+# RideClean: smog dose for delivery riders
 
 **Team Edge_testcase, Environmental Hacks (Bharat Builds Tour, WeMakeDevs x AWS), Air track.**
 
@@ -6,7 +6,7 @@ Delhi's delivery riders spend 8 to 10 hours a day on two-wheelers in the worst a
 more smoke than the nearest monitor shows, nobody tells them how much, and nobody plans shifts around it.
 Amazon already pulls riders off the road from 1 to 4 pm during heatwaves. Smog has no such rule.
 
-Saans turns government monitor data into two things:
+RideClean turns government monitor data into two things:
 
 - **Rider app (Hindi, voice-first).** A rider says *"आनंद विहार से नोएडा सेक्टर 62 जा रहा हूँ"* and hears back,
   in Hindi, how much smoke the ride costs in cigarettes, whether leaving later would help, and the nearest

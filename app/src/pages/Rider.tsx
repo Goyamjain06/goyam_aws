@@ -14,7 +14,7 @@ const store = {
 
 const UI = {
   hi: {
-    brand: 'साँस', switchTo: 'English', switchLabel: 'Switch to English',
+    brand: 'RideClean', switchTo: 'English', switchLabel: 'Switch to English',
     live: (s: string) => `लाइव, ${s}`, typical: 'इस समय का आम स्तर',
     soFar: 'आज की शिफ़्ट में अब तक', unit: 'सिगरेट जितना धुआँ', shiftStarted: 'शिफ़्ट शुरू हुई', shiftLabel: 'शिफ़्ट शुरू होने का समय',
     demoPlace: ', जगह: DTU (डेमो)', thinking: 'सोच रहा हूँ…', replay: 'फिर से सुनें',
@@ -27,7 +27,7 @@ const UI = {
     from: 'से', cig: 'सिगरेट', min: 'मिनट', road: 'सड़क पर PM2.5', next6: 'अगले 6 घंटे', breakTitle: 'साफ़ हवा में आराम', now: 'अभी', timeline: 'अगले घंटों में धुआँ',
   },
   en: {
-    brand: 'Saans', switchTo: 'हिंदी', switchLabel: 'हिंदी में बदलें',
+    brand: 'RideClean', switchTo: 'हिंदी', switchLabel: 'हिंदी में बदलें',
     live: (s: string) => `Live, ${s}`, typical: 'Typical for this hour',
     soFar: "So far in today's shift", unit: 'cigarettes of smoke', shiftStarted: 'Shift started at', shiftLabel: 'Shift start time',
     demoPlace: ', place: DTU (demo)', thinking: 'Thinking…', replay: 'Play again',

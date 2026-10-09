@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# One command to put Saans on AWS:
+# One command to put RideClean on AWS:
 #   backend  -> AWS SAM: Lambda (Strands agent + Amazon Nova on Bedrock + Polly) + DynamoDB
 #   frontend -> AWS Amplify Hosting
 #
