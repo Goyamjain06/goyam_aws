@@ -14,7 +14,7 @@ const store = {
 
 const UI = {
   hi: {
-    brand: 'RideClean', switchTo: 'English', switchLabel: 'Switch to English',
+    brand: 'RideClean', navHome: 'होम', navStation: 'स्टेशन प्लानर', switchTo: 'English', switchLabel: 'Switch to English',
     live: (s: string) => `लाइव, ${s}`, typical: 'इस समय का आम स्तर',
     soFar: 'आज की शिफ़्ट में अब तक', unit: 'सिगरेट जितना धुआँ', shiftStarted: 'शिफ़्ट शुरू हुई', shiftLabel: 'शिफ़्ट शुरू होने का समय',
     demoPlace: ', जगह: DTU (डेमो)', thinking: 'सोच रहा हूँ…', replay: 'फिर से सुनें',
@@ -30,7 +30,7 @@ const UI = {
     from: 'से', cig: 'सिगरेट', min: 'मिनट', road: 'सड़क पर PM2.5', next6: 'अगले 6 घंटे', breakTitle: 'साफ़ हवा में आराम', now: 'अभी', timeline: 'अगले घंटों में धुआँ',
   },
   en: {
-    brand: 'RideClean', switchTo: 'हिंदी', switchLabel: 'हिंदी में बदलें',
+    brand: 'RideClean', navHome: 'Home', navStation: 'Station planner', switchTo: 'हिंदी', switchLabel: 'हिंदी में बदलें',
     live: (s: string) => `Live, ${s}`, typical: 'Typical for this hour',
     soFar: "So far in today's shift", unit: 'cigarettes of smoke', shiftStarted: 'Shift started at', shiftLabel: 'Shift start time',
     demoPlace: ', place: DTU (demo)', thinking: 'Thinking…', replay: 'Play again',
@@ -131,6 +131,10 @@ export default function Rider() {
           </div>
         </div>
       </header>
+      <nav className="r-nav">
+        <Link to="/">{t.navHome}</Link>
+        <Link to="/station">{t.navStation}</Link>
+      </nav>
       <p className="pm-explain">{t.pmExplain}</p>
 
       <section className="r-dose" aria-live="polite">

@@ -182,6 +182,9 @@ h2 { font-size: 2rem; }
   .map { height: 360px; }
   .roster .num { width: auto; }
 }
+.r-nav { display: flex; flex-wrap: wrap; gap: .25rem 1rem; margin: 0 0 .4rem; font-size: .85rem; }
+.r-nav a { color: var(--muted); text-decoration: none; padding: .2rem 0; }
+.r-nav a:hover { color: var(--ink); text-decoration: underline; }
 .r-top-right { display: flex; align-items: center; gap: .5rem; }
 .lang-toggle { border: 1.5px solid var(--ink); background: rgba(255,255,255,.6); border-radius: 999px; padding: .3rem .8rem; font-weight: 700; cursor: pointer; min-height: 40px; }
 .lang-toggle:hover { background: var(--ink); color: #fff; }
